@@ -70,7 +70,7 @@ namespace rclcs
 		/// <value><c>true</c> if this instance is init; otherwise, <c>false</c>.</value>
 		public override  bool IsInit
 		{
-			get{ return rcl_ok(); }
+			get{ return false; }
 
 		}
 
@@ -122,9 +122,6 @@ namespace rclcs
 
 		[DllImport("librcl.so")]
 		static extern UInt64 rcl_get_instance_id ();
-
-		[DllImport("librcl.so")]
-		static extern bool rcl_ok ();
 
 
 	}
