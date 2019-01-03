@@ -10,56 +10,42 @@ namespace rclcs
 	/// This class implements IDisposable.
 	/// </summary>
 	internal class RCLLinux:RCLBase
-	{
+    {
+        private Context activeContext;
 
-        /// <summary>
-        /// This method does the initilisation of the ros client lib.
-        /// <remarks>Call this method before you do any other calls to ros</remarks>
-        /// </summary>
-        /// <param name="args">Commandline arguments</param>
-        /// <exception cref="RCLAlreadInitExcption">In case rcl was alread initialised</exception>
-        public override void Init(String[] args)
-		{
-            rcl_context_t context = ZeroInitializedContext;
-
-		}
-		
-        /// <summary>
-        /// Gets a zero initialization context object.
-        /// </summary>
-
-        public override rcl_context_t ZeroInitializedContext
+        public override void Init(Context context)
         {
-            get { return new rcl_context_t(); }
+            rcl_init_options_t init_options = SafeNativeMethodsLinux.rcl_get_zero_initialized_init_options();
+            rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
+
+            activeContext = context;
+            CheckReturnEnum(NativeMethodsLinux.rcl_init_options_init(ref init_options, allocator));
+            CheckReturnEnum(NativeMethodsLinux.rcl_init(0, null, ref init_options, ref context.rclContext));
         }
-              
-        /// <summary>
-        /// Implementation of IDisposable
-        /// </summary>
-        /// <param name="disposing">If set to <c>true</c> disposing.</param>
-        protected override void Dispose(bool disposing)
-		{
-			if (disposed)
-				return;
-			if (disposing) {
 
-				// Free any other managed objects here.
-			}
-			// Free any unmanaged objects here.
-			//RCLReturnValues retVal = (RCLReturnValues)rcl_shutdown();
-			//}
-			disposed = true;
-		}
-		/// <summary>
-		/// Releases unmanaged resources and performs other cleanup operations before the <see cref="rclcs.RCL"/> is reclaimed
-		/// by garbage collection.
-		/// </summary>
-		~RCLLinux()
-		{
-			Dispose (false);
-		}
+        private void CheckReturnEnum(int ret)
+        {
+            switch((RCLReturnEnum)ret)
+            {
+                case RCLReturnEnum.RCL_RET_OK:
+                    break;
+                default:
+                    throw new RuntimeError(NativeMethodUtils.PopRclErrorString());
+            }
+        }
 
-       
+        public override void Shutdown()
+        {
+            Shutdown(activeContext);
+        }
+
+        public override void Shutdown(Context context)
+        {
+            CheckReturnEnum(NativeMethodsLinux.rcl_shutdown(ref context.rclContext));
+            CheckReturnEnum(NativeMethodsLinux.rcl_context_fini(ref context.rclContext));
+        }
+
+
     }
 }
 

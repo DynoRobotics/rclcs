@@ -40,16 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Executable.cs" />
-    <Compile Include="MessageRecievedEventArgs.cs" />
-    <Compile Include="ServiceRecievedRequestEventArgs.cs" />
-    <Compile Include="IRosMessage.cs" />
-    <Compile Include="IRosService.cs" />
-    <Compile Include="IRosTransportItem.cs" />
-    <Compile Include="ClientRecievedResponseEventArgs.cs" />
-    <Compile Include="MessageWrapper.cs" />
-    <Compile Include="MarshallingHelpers.cs" />
-    <Compile Include="RCLImpl\RCLReturnValues.cs" />
+    <Compile Include="RCLImpl\RCLReturnEnum.cs" />
     <Compile Include="RCLImpl\RCLLinux.cs">
     </Compile>
     <Compile Include="RCLImpl\RCL.cs" />
@@ -57,12 +48,17 @@
     <Compile Include="Test\NativeMetodsTest.cs" />
     <Compile Include="NativeTypes\RCLTypes.cs" />
     <Compile Include="Test\InitShutdownTest.cs" />
+    <Compile Include="ContextImpl\Context.cs" />
+    <Compile Include="RCLExceptions.cs" />
+    <Compile Include="NativeMethods\NativeMethodUtilsLinux.cs" />
+    <Compile Include="NodeImpl\Node.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Test\" />
     <Folder Include="NativeMethods\" />
+    <Folder Include="ContextImpl\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RCLImpl\RCL.cs.old" />
@@ -113,5 +109,14 @@
     <None Include="NativeTypes\rosidl_message_type_support_t.cs.old" />
     <None Include="NativeTypes\rosidl_service_type_support_t.cs.old" />
     <None Include="Test\NativeTypesTest.cs.old" />
+    <None Include="ClientRecievedResponseEventArgs.cs.old" />
+    <None Include="Executable.cs.old" />
+    <None Include="IRosMessage.cs.old" />
+    <None Include="IRosService.cs.old" />
+    <None Include="IRosTransportItem.cs.old" />
+    <None Include="MarshallingHelpers.cs.old" />
+    <None Include="MessageRecievedEventArgs.cs.old" />
+    <None Include="MessageWrapper.cs.old" />
+    <None Include="ServiceRecievedRequestEventArgs.cs.old" />
   </ItemGroup>
 </Project>

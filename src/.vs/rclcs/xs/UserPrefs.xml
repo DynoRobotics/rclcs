@@ -1,16 +1,17 @@
 ﻿<Properties StartupConfiguration="{CC0D4875-60FA-4318-854B-1924FED1C85B}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="RCLImpl/RCLLinux.cs.old">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/InitShutdownTest.cs">
     <Files>
-      <File FileName="Test/NativeMetodsTest.cs" Line="94" Column="76" />
-      <File FileName="Test/InitShutdownTest.cs" Line="18" Column="15" />
-      <File FileName="RCLImpl/RCLLinux.cs.old" Line="38" Column="63" />
-      <File FileName="RCLImpl/RCL.cs" Line="39" Column="16" NotebookId="1" />
-      <File FileName="RCLImpl/RCLLinux.cs" Line="44" Column="20" NotebookId="1" />
-      <File FileName="NativeMethods/NativeMethodsLinux.cs" Line="69" Column="1" NotebookId="1" />
-      <File FileName="NativeTypes/RCLTypes.cs" Line="29" Column="26" NotebookId="1" />
-      <File FileName="RCLImpl/RCLReturnValues.cs" Line="8" Column="27" NotebookId="1" />
-      <File FileName="NativeTypes/rmw_request_id_t.cs.old" Line="1" Column="1" NotebookId="1" />
-      <File FileName="NodeImpl/rcl_node_linux.cs.old" Line="57" Column="38" NotebookId="1" />
+      <File FileName="Test/NativeMetodsTest.cs" Line="9" Column="40" />
+      <File FileName="Test/InitShutdownTest.cs" Line="81" Column="1" />
+      <File FileName="RCLImpl/RCL.cs" Line="48" Column="10" NotebookId="1" />
+      <File FileName="RCLImpl/RCLLinux.cs" Line="44" Column="42" NotebookId="1" />
+      <File FileName="NativeMethods/NativeMethodsLinux.cs" Line="27" Column="48" NotebookId="1" />
+      <File FileName="NativeTypes/RCLTypes.cs" Line="26" Column="37" NotebookId="1" />
+      <File FileName="RCLImpl/RCLReturnEnum.cs" Line="23" Column="38" NotebookId="1" />
+      <File FileName="ContextImpl/Context.cs" Line="24" Column="9" NotebookId="1" />
+      <File FileName="NativeMethods/NativeMethodUtilsLinux.cs" Line="22" Column="32" NotebookId="1" />
+      <File FileName="NodeImpl/Node.cs" Line="13" Column="3" NotebookId="1" />
+      <File FileName="RCLExceptions.cs" Line="30" Column="39" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -18,9 +19,7 @@
           <Node name="rclcs" expanded="True">
             <Node name="rclcs" expanded="True">
               <Node name="rclcs" expanded="True">
-                <Node name="NativeMethodsLinuxTest" expanded="True">
-                  <Node name="TestContextIsValid" selected="True" />
-                </Node>
+                <Node name="InitShutdownTest" expanded="True" />
               </Node>
             </Node>
           </Node>

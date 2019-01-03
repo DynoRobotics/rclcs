@@ -6,28 +6,28 @@ using rclcs;
 namespace rclcs.Test
 {
     [TestFixture]
-    public class NativeMethodsLinuxTest : AssertionHelper
+    public class NativeMethodsLinuxTest
     {
         [Test]
-        public void TestGetZeroInitializedContext()
+        public void GetZeroInitializedContext()
         {
             rcl_context_t context = SafeNativeMethodsLinux.rcl_get_zero_initialized_context();
         }
 
         [Test]
-        public void TestGetDefaultAllocator()
+        public void GetDefaultAllocator()
         {
             rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
         }
 
         [Test]
-        public void TestGetZeroInitializedInitOptions()
+        public void GetZeroInitializedInitOptions()
         {
             rcl_init_options_t init_options = SafeNativeMethodsLinux.rcl_get_zero_initialized_init_options();
         }
 
         [Test]
-        public void TestInitOptionsInit()
+        public void InitOptionsInit()
         {
             rcl_init_options_t init_options = SafeNativeMethodsLinux.rcl_get_zero_initialized_init_options();
             rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
@@ -36,34 +36,23 @@ namespace rclcs.Test
         }
 
         [Test]
-        public void TestGetErrorString()
+        public void GetErrorString()
         {
             NativeMethodsLinux.rcl_reset_error();
-            rcl_error_string_t rclErrorMessage = NativeMethodsLinux.rcl_get_error_string();
-            string messageString = RclErrorMessageToString(rclErrorMessage);
+            string messageString = NativeMethodUtils.GetRclErrorString();
             Assert.That(messageString, Is.EqualTo("error not set"));
 
         }
 
-        internal unsafe string RclErrorMessageToString(rcl_error_string_t rclErrorString)
-        {
-            int maxMessageLength = 1024;
-            char[] charArray = new char[maxMessageLength];
-            for (int i = 0; i < maxMessageLength; i++)
-            {
-                charArray[i] = rclErrorString.str[i];
-            }
-            return new string(charArray).Trim('\0');
-        }
 
         [Test]
-        public void TestResetError()
+        public void ResetError()
         {
             NativeMethodsLinux.rcl_reset_error();
         }
 
         [Test]
-        public void TestRclShutdown()
+        public void RclShutdown()
         {
             rcl_context_t context = SafeNativeMethodsLinux.rcl_get_zero_initialized_context();
             rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
@@ -72,7 +61,7 @@ namespace rclcs.Test
         }
 
         [Test]
-        public void TestContextIsValid()
+        public void ContextIsValid()
         {
             rcl_init_options_t init_options = SafeNativeMethodsLinux.rcl_get_zero_initialized_init_options();
             rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
@@ -85,7 +74,7 @@ namespace rclcs.Test
         }
 
         [Test]
-        public void TestInitShutdownFinalize()
+        public void InitShutdownFinalize()
         {
             rcl_init_options_t init_options = SafeNativeMethodsLinux.rcl_get_zero_initialized_init_options();
             rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
@@ -104,7 +93,7 @@ namespace rclcs.Test
         }
 
         [Test]
-        public void TestInitValidArgs()
+        public void InitValidArgs()
         {
             rcl_init_options_t init_options = SafeNativeMethodsLinux.rcl_get_zero_initialized_init_options();
             rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
