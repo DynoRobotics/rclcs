@@ -4,13 +4,17 @@ namespace rclcs
 {
     internal class RCLWindows: RCLBase
     {
-		/// <summary>
-		/// This method does the initilisation of the ros client lib.
-		/// <remarks>Call this method before you do any other calls to ros</remarks>
-		/// </summary>
-		/// <param name="args">Commandline arguments</param>
-		/// <exception cref="RCLAlreadInitExcption">In case rcl was alread initialised</exception>
-		public override void Init(String[] args)
+        public const string LibRCUtilsPATH = @"rcutils.dll";
+        public const string LibRCLPath = @"rcl.dll";
+        public const string LibRMWPath = @"rmw.dll";
+
+        /// <summary>
+        /// This method does the initilisation of the ros client lib.
+        /// <remarks>Call this method before you do any other calls to ros</remarks>
+        /// </summary>
+        /// <param name="args">Commandline arguments</param>
+        /// <exception cref="RCLAlreadInitExcption">In case rcl was alread initialised</exception>
+        public override void Init(String[] args)
 		{
 			if (args == null)
 				throw new ArgumentNullException();

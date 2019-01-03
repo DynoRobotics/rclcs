@@ -1,0 +1,13 @@
+﻿using System;
+using System.Runtime.InteropServices;
+
+namespace rclcs
+{
+    /// <summary>
+    /// Implementation of the rcl_context_t struct
+    /// </summary>
+    public struct rcl_context_t
+    {
+
+	}
+}

@@ -1,0 +1,15 @@
+﻿using NUnit.Framework;
+using System;
+using rclcs;
+
+namespace rclcs.Test
+{
+    [TestFixture]
+    public class NodeTest:AssertionHelper
+    {
+        //[Test]
+        //public void TestCase()
+        //{
+        //}
+    }
+}

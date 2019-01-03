@@ -34,23 +34,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <Package>nunit</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NativeTypes\rmw_gid_t.cs" />
-    <Compile Include="NativeTypes\rmw_message_info_t.cs" />
-    <Compile Include="NativeTypes\rmw_qos_profile.cs" />
-    <Compile Include="NativeTypes\rosidl_generator_c__String.cs" />
-    <Compile Include="NativeTypes\rosidl_message_type_support_t.cs" />
-    <Compile Include="Executor.cs" />
     <Compile Include="Executable.cs" />
     <Compile Include="MessageRecievedEventArgs.cs" />
-    <Compile Include="RCLExceptions.cs" />
-    <Compile Include="Executors\SingleThreadedExecutor.cs" />
-    <Compile Include="NativeTypes\rosidl_generator_c__primitive_arrays.cs" />
-    <Compile Include="NativeTypes\rcl_allocator_t.cs" />
-    <Compile Include="NativeTypes\rosidl_service_type_support_t.cs" />
-    <Compile Include="NativeTypes\rmw_request_id_t.cs" />
     <Compile Include="ServiceRecievedRequestEventArgs.cs" />
     <Compile Include="IRosMessage.cs" />
     <Compile Include="IRosService.cs" />
@@ -59,40 +50,68 @@
     <Compile Include="MessageWrapper.cs" />
     <Compile Include="MarshallingHelpers.cs" />
     <Compile Include="RCLImpl\RCLReturnValues.cs" />
-    <Compile Include="RCLImpl\RCLLinux.cs" />
+    <Compile Include="RCLImpl\RCLLinux.cs">
+    </Compile>
     <Compile Include="RCLImpl\RCL.cs" />
-    <Compile Include="NodeImpl\rcl_node.cs" />
-    <Compile Include="NodeImpl\rcl_node_linux.cs" />
-    <Compile Include="NativeTypes\rcl_node_t.cs" />
-    <Compile Include="NodeImpl\Node.cs" />
-    <Compile Include="PublisherImpl\rcl_publisher.cs" />
-    <Compile Include="PublisherImpl\rcl_publisher_linux.cs" />
-    <Compile Include="NativeTypes\rcl_publisher_t.cs" />
-    <Compile Include="PublisherImpl\Publisher.cs" />
-    <Compile Include="SubscriptionImpl\rcl_subscription.cs" />
-    <Compile Include="SubscriptionImpl\rcl_subscription_linux.cs" />
-    <Compile Include="NativeTypes\rcl_subscription_t.cs" />
-    <Compile Include="SubscriptionImpl\Subscription.cs" />
-    <Compile Include="ClientImpl\rcl_client.cs" />
-    <Compile Include="ClientImpl\rcl_client_linux.cs" />
-    <Compile Include="NativeTypes\rcl_client_t.cs" />
-    <Compile Include="ServiceImpl\rcl_service.cs" />
-    <Compile Include="ServiceImpl\rcl_service_linux.cs" />
-    <Compile Include="NativeTypes\rcl_service_t.cs" />
-    <Compile Include="ClientImpl\Client.cs" />
-    <Compile Include="ServiceImpl\Service.cs" />
-    <Compile Include="GraphImpl\Graph.cs" />
-    <Compile Include="GraphImpl\rcl_graph_linux.cs" />
-    <Compile Include="NativeTypes\rcl_topic_names_and_types_t.cs" />
-    <Compile Include="RCLImpl\RCLWindows.cs" />
-    <Compile Include="PublisherImpl\rcl_publisher_windows.cs" />
-    <Compile Include="SubscriptionImpl\rcl_subscription_windwos.cs" />
-    <Compile Include="RCLErrorHandlingImpl\RCLErrorHandling.cs" />
-    <Compile Include="RCLErrorHandlingImpl\rcl_error_handling.cs" />
-    <Compile Include="NativeTypes\rmw_error_state_t.cs" />
-    <Compile Include="RCLErrorHandlingImpl\rcl_error_handling_linux.cs" />
-    <Compile Include="NodeImpl\rcl_node_windows.cs" />
+    <Compile Include="NativeMethods\NativeMethodsLinux.cs" />
+    <Compile Include="Test\NativeMetodsTest.cs" />
+    <Compile Include="NativeTypes\RCLTypes.cs" />
+    <Compile Include="Test\InitShutdownTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Test\" />
+    <Folder Include="NativeMethods\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RCLImpl\RCL.cs.old" />
+    <None Include="RCLImpl\RCLLinux.cs.old" />
+    <None Include="RCLImpl\RCLWindows.cs.old" />
+    <None Include="ServiceImpl\rcl_service_linux.cs.old" />
+    <None Include="ClientImpl\rcl_client_linux.cs.old" />
+    <None Include="ServiceImpl\rcl_service.cs.old" />
+    <None Include="ServiceImpl\Service.cs.old" />
+    <None Include="NodeImpl\Node.cs.old" />
+    <None Include="NodeImpl\rcl_node.cs.old" />
+    <None Include="NodeImpl\rcl_node_linux.cs.old" />
+    <None Include="NodeImpl\rcl_node_windows.cs.old" />
+    <None Include="PublisherImpl\Publisher.cs.old" />
+    <None Include="PublisherImpl\rcl_publisher.cs.old" />
+    <None Include="PublisherImpl\rcl_publisher_linux.cs.old" />
+    <None Include="PublisherImpl\rcl_publisher_windows.cs.old" />
+    <None Include="ClientImpl\Client.cs.old" />
+    <None Include="ClientImpl\rcl_client.cs.old" />
+    <None Include="GraphImpl\Graph.cs.old" />
+    <None Include="GraphImpl\rcl_graph_linux.cs.old" />
+    <None Include="RCLErrorHandlingImpl\rcl_error_handling.cs.old" />
+    <None Include="RCLErrorHandlingImpl\rcl_error_handling_linux.cs.old" />
+    <None Include="RCLErrorHandlingImpl\RCLErrorHandling.cs.old" />
+    <None Include="SubscriptionImpl\rcl_subscription.cs.old" />
+    <None Include="SubscriptionImpl\rcl_subscription_linux.cs.old" />
+    <None Include="SubscriptionImpl\rcl_subscription_windwos.cs.old" />
+    <None Include="SubscriptionImpl\Subscription.cs.old" />
+    <None Include="RCLExceptions.cs.old" />
+    <None Include="Executor.cs.old" />
+    <None Include="Executors\SingleThreadedExecutor.cs.old" />
+    <None Include="Test\NodeTest.cs.old" />
+    <None Include="NativeTypes\rcl_allocator_t.cs.old" />
+    <None Include="NativeTypes\rcl_client_t.cs.old" />
+    <None Include="NativeTypes\rcl_context_t.cs.old" />
+    <None Include="NativeTypes\rcl_node_t.cs.old" />
+    <None Include="NativeTypes\rcl_publisher_t.cs.old" />
+    <None Include="NativeTypes\rcl_service_t.cs.old" />
+    <None Include="NativeTypes\rcl_subscription_t.cs.old" />
+    <None Include="NativeTypes\rcl_topic_names_and_types_t.cs.old" />
+    <None Include="NativeTypes\rmw_error_state_t.cs.old" />
+    <None Include="NativeTypes\rmw_gid_t.cs.old" />
+    <None Include="NativeTypes\rmw_message_info_t.cs.old" />
+    <None Include="NativeTypes\rmw_qos_profile.cs.old" />
+    <None Include="NativeTypes\rmw_request_id_t.cs.old" />
+    <None Include="NativeTypes\rosidl_generator_c__primitive_arrays.cs.old" />
+    <None Include="NativeTypes\rosidl_generator_c__String.cs.old" />
+    <None Include="NativeTypes\rosidl_message_type_support_t.cs.old" />
+    <None Include="NativeTypes\rosidl_service_type_support_t.cs.old" />
+    <None Include="Test\NativeTypesTest.cs.old" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,19 @@
+﻿using NUnit.Framework;
+using System;
+using rclcs;
+
+namespace rclcs.Test
+{
+    [TestFixture]
+    public class NativeTypesTest:AssertionHelper
+    {
+        [Test]
+        public void TestContext()
+        {
+            RCLBase Impl = new RCLLinux();
+
+            rcl_context_t context = Impl.ZeroInitializedContext;
+            Assert.IsNotNull(context);
+        }
+    }
+}

@@ -5,17 +5,22 @@ namespace rclcs
 	/// <summary>
 	/// Managed implementation of the rcl_ret_t enum which specifies return values for the rcl functions.
 	/// </summary>
-	public enum RCLReturnValues
+	public enum RCLReturnEnum
 	{
 		RCL_RET_OK = 0,
 		RCL_RET_ERROR = 1,
 		RCL_RET_TIMEOUT = 2,
-		// rcl specific ret codes start at 100
-		RCL_RET_ALREADY_INIT = 100,
+
+        RCL_RET_BAD_ALLOC = 10,
+        RCL_RET_INVALID_ARGUMENT = 11,
+        RCL_RET_INCORRECT_RMW_IMPLEMENTATION = 12,
+
+        // rcl specific ret codes start at 100
+        RCL_RET_ALREADY_INIT = 100,
 		RCL_RET_NOT_INIT = 101,
-		RCL_RET_BAD_ALLOC = 102,
-		RCL_RET_INVALID_ARGUMENT = 103,
-		RCL_REG_MISMATCHED_RMW_ID = 104,
+        RCL_RET_MISMATCHED_RMW_ID = 102,
+        RCL_RET_TOPIC_NAME_INVALID = 103,
+        RCL_RET_SERVICE_NAME_INVALID = 104,
 		// rcl node specific ret codes in 2XX
 		RCL_RET_NODE_INVALID = 200,
 		// rcl publisher specific ret codes in 3XX
