@@ -1,5 +1,4 @@
 using System;
-//using System.Runtime.InteropServices;
 namespace rclcs
 {
     // rcl
@@ -12,14 +11,9 @@ namespace rclcs
         public IntPtr state;
     }
 
-    public struct rcl_arguments_t
-    {
-        public IntPtr impl;
-    }
-
     public struct rcl_context_t
     {
-        public rcl_arguments_t global_arguments;
+        public IntPtr global_arguments;
         public IntPtr impl;
         public IntPtr instance_id_storage;
     }
