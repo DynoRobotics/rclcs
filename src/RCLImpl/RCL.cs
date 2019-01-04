@@ -49,10 +49,9 @@ namespace rclcs
             Impl.Init(context);
         }
 
-        public Node CreateNode(string name, Context context)
+        public Node CreateNode(string nodeName, Context context, string nodeNamespace = null)
         {
-            throw new NotInitializedException();
-            //return new Node();
+            return new Node(nodeName, context, nodeNamespace: nodeNamespace);
         }
 
         public void Shutdown()

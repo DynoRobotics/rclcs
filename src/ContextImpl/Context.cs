@@ -16,6 +16,11 @@ namespace rclcs
             rclContext = SafeNativeMethodsLinux.rcl_get_zero_initialized_context();
         }
 
+        public bool Ok
+        {
+            get { return SafeNativeMethodsLinux.rcl_context_is_valid(ref rclContext); }
+        }
+
         ~Context()
         {
             //TODO: figure out if this is correct...

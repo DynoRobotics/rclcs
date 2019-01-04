@@ -1,11 +1,11 @@
 ﻿using System;
 
 namespace rclcs
-{
-	/// <summary>
-	/// Managed implementation of the rcl_ret_t enum which specifies return values for the rcl functions.
-	/// </summary>
-	public enum RCLReturnEnum
+{   
+    /// <summary>
+    /// Managed implementation of the rcl_ret_t enum which specifies return values for the rcl functions.
+    /// </summary>
+    public enum RCLReturnEnum
 	{
 		RCL_RET_OK = 0,
 		RCL_RET_ERROR = 1,
@@ -23,8 +23,11 @@ namespace rclcs
         RCL_RET_SERVICE_NAME_INVALID = 104,
 		// rcl node specific ret codes in 2XX
 		RCL_RET_NODE_INVALID = 200,
-		// rcl publisher specific ret codes in 3XX
-		RCL_RET_PUBLISHER_INVALID = 300,
+        RCL_RET_NODE_INVALID_NAME = 201,
+        RCL_RET_NODE_INVALID_NAMESPACE = 202,
+
+        // rcl publisher specific ret codes in 3XX
+        RCL_RET_PUBLISHER_INVALID = 300,
 		// rcl subscription specific ret codes in 4XX
 		RCL_RET_SUBSCRIPTION_INVALID = 400,
 		RCL_RET_SUBSCRIPTION_TAKE_FAILED = 401,

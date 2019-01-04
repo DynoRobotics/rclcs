@@ -31,5 +31,35 @@ namespace rclcs
         {
         }
     }
+
+    public class InvalidNodeNameException : Exception
+    {
+        public InvalidNodeNameException()
+        {
+        }
+
+        public InvalidNodeNameException(string message) : base(message)
+        {
+        }
+
+        public InvalidNodeNameException(string message, Exception inner) : base(message, inner)
+        {
+        }
+    }
+
+    public class InvalidNamespaceException : Exception
+    {
+        public InvalidNamespaceException()
+        {
+        }
+
+        public InvalidNamespaceException(string message) : base(message)
+        {
+        }
+
+        public InvalidNamespaceException(string message, Exception inner) : base(message, inner)
+        {
+        }
+    }
 }
 

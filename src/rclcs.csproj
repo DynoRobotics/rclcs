@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RCLImpl\RCLReturnEnum.cs" />
+    <Compile Include="RCLImpl\RCLReturn.cs" />
     <Compile Include="RCLImpl\RCLLinux.cs">
     </Compile>
     <Compile Include="RCLImpl\RCL.cs" />
@@ -52,6 +52,9 @@
     <Compile Include="RCLExceptions.cs" />
     <Compile Include="NativeMethods\NativeMethodUtilsLinux.cs" />
     <Compile Include="NodeImpl\Node.cs" />
+    <Compile Include="Test\CreateNodeTest.cs" />
+    <Compile Include="MarshallingHelpers.cs" />
+    <Compile Include="RCLImpl\RCLHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -114,7 +117,6 @@
     <None Include="IRosMessage.cs.old" />
     <None Include="IRosService.cs.old" />
     <None Include="IRosTransportItem.cs.old" />
-    <None Include="MarshallingHelpers.cs.old" />
     <None Include="MessageRecievedEventArgs.cs.old" />
     <None Include="MessageWrapper.cs.old" />
     <None Include="ServiceRecievedRequestEventArgs.cs.old" />

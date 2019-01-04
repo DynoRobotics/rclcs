@@ -26,6 +26,12 @@ namespace rclcs
         [DllImport(LibPathsLinux.RCL)]
         internal static extern int rcl_context_fini(ref rcl_context_t context);
 
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern int rcl_node_init(ref rcl_node_t node, string name, string nodeNamespace, ref rcl_context_t context, ref rcl_node_options_t default_options);
+
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern int rcl_node_fini(ref rcl_node_t node);
+
 
         // RCUtils
         [DllImport(LibPathsLinux.RCUtils, EntryPoint = "rcutils_get_error_string")]
@@ -48,6 +54,18 @@ namespace rclcs
 
         [DllImport(LibPathsLinux.RCL)]
         internal static extern bool rcl_context_is_valid(ref rcl_context_t context);
+
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern rcl_node_t rcl_get_zero_initialized_node();
+
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern rcl_node_options_t rcl_node_get_default_options();
+
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern IntPtr rcl_node_get_namespace(ref rcl_node_t node);
+
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern IntPtr rcl_node_get_name(ref rcl_node_t node);
 
         // RCUtils
         [DllImport(LibPathsLinux.RCUtils, EntryPoint = "rcutils_get_default_allocator")]

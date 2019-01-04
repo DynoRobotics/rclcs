@@ -75,6 +75,7 @@ namespace rclcs.Test
             Assert.That(() => { rclcs.CreateNode("foo", context); }, Throws.TypeOf<NotInitializedException>());
         }
 
+        
     }
 
 }

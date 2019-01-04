@@ -111,5 +111,114 @@ namespace rclcs.Test
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK));
         }
 
+        [Test]
+        public void GetZeroInitializedNode()
+        {
+            rcl_node_t node = SafeNativeMethodsLinux.rcl_get_zero_initialized_node();
+        }
+
+        [Test]
+        public void NodeGetDefaultOptions()
+        {
+            rcl_node_options_t defaultNodeOptions = SafeNativeMethodsLinux.rcl_node_get_default_options();
+        }
+
+       [Test]
+       public void NodeInit()
+        {
+            rcl_init_options_t init_options = SafeNativeMethodsLinux.rcl_get_zero_initialized_init_options();
+            rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
+            RCLReturnEnum ret = (RCLReturnEnum)NativeMethodsLinux.rcl_init_options_init(ref init_options, allocator);
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK));
+            rcl_context_t context = SafeNativeMethodsLinux.rcl_get_zero_initialized_context();
+
+            ret = (RCLReturnEnum)NativeMethodsLinux.rcl_init(0, null, ref init_options, ref context);
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK));
+
+            rcl_node_t node = SafeNativeMethodsLinux.rcl_get_zero_initialized_node();
+            rcl_node_options_t defaultNodeOptions = SafeNativeMethodsLinux.rcl_node_get_default_options();
+
+            string name = "node_test";
+            string nodeNamespace = "/ns";
+
+            ret = (RCLReturnEnum)NativeMethodsLinux.rcl_node_init(ref node, name, nodeNamespace, ref context, ref defaultNodeOptions);
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK));
+
+            NativeMethodsLinux.rcl_node_fini(ref node);
+            NativeMethodsLinux.rcl_shutdown(ref context);
+            NativeMethodsLinux.rcl_context_fini(ref context);
+        }
+
+        internal rcl_context_t InitRclHelper()
+        {
+            rcl_init_options_t init_options = SafeNativeMethodsLinux.rcl_get_zero_initialized_init_options();
+            rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
+            RCLReturnEnum ret = (RCLReturnEnum)NativeMethodsLinux.rcl_init_options_init(ref init_options, allocator);
+            rcl_context_t context = SafeNativeMethodsLinux.rcl_get_zero_initialized_context();
+
+            ret = (RCLReturnEnum)NativeMethodsLinux.rcl_init(0, null, ref init_options, ref context);
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK));
+
+            return context;
+        }
+
+        [Test]
+        public void NodeGetNamespace()
+        {
+            rcl_context_t context = InitRclHelper();
+
+            rcl_node_t node = SafeNativeMethodsLinux.rcl_get_zero_initialized_node();
+            rcl_node_options_t defaultNodeOptions = SafeNativeMethodsLinux.rcl_node_get_default_options();
+
+            string nodeName = "node_test";
+            string nodeNamespace = "/ns";
+            RCLReturnEnum ret = (RCLReturnEnum)NativeMethodsLinux.rcl_node_init(ref node, nodeName, nodeNamespace, ref context, ref defaultNodeOptions);
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK));
+
+            string nodeNameFromRcl = MarshallingHelpers.PtrToString(SafeNativeMethodsLinux.rcl_node_get_name(ref node));
+            Assert.That("node_test", Is.EqualTo(nodeNameFromRcl));
+
+            NativeMethodsLinux.rcl_node_fini(ref node);
+            NativeMethodsLinux.rcl_shutdown(ref context);
+            NativeMethodsLinux.rcl_context_fini(ref context);
+        }
+
+        [Test]
+        public void NodeGetName()
+        {
+            rcl_context_t context = InitRclHelper();
+
+            rcl_node_t node = SafeNativeMethodsLinux.rcl_get_zero_initialized_node();
+            rcl_node_options_t defaultNodeOptions = SafeNativeMethodsLinux.rcl_node_get_default_options();
+
+            string name = "node_test";
+            string nodeNamespace = "/ns";
+            NativeMethodsLinux.rcl_node_init(ref node, name, nodeNamespace, ref context, ref defaultNodeOptions);
+
+            string nodeNamespaceFromRcl = MarshallingHelpers.PtrToString(SafeNativeMethodsLinux.rcl_node_get_namespace(ref node));
+            Assert.That("/ns", Is.EqualTo(nodeNamespaceFromRcl));
+
+            NativeMethodsLinux.rcl_node_fini(ref node);
+            NativeMethodsLinux.rcl_shutdown(ref context);
+            NativeMethodsLinux.rcl_context_fini(ref context);
+        }
+
+        [Test]
+        public void NodeIsValid()
+        {  rcl_context_t context = InitRclHelper();
+
+            rcl_node_t node = SafeNativeMethodsLinux.rcl_get_zero_initialized_node();
+            rcl_node_options_t defaultNodeOptions = SafeNativeMethodsLinux.rcl_node_get_default_options();
+
+            string name = "node_test";
+            string nodeNamespace = "/ns";
+            NativeMethodsLinux.rcl_node_init(ref node, name, nodeNamespace, ref context, ref defaultNodeOptions);
+
+
+
+            NativeMethodsLinux.rcl_node_fini(ref node);
+            NativeMethodsLinux.rcl_shutdown(ref context);
+            NativeMethodsLinux.rcl_context_fini(ref context);
+        }
     }
 }

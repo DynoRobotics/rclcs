@@ -19,20 +19,10 @@ namespace rclcs
             rcl_allocator_t allocator = SafeNativeMethodsLinux.rcl_get_default_allocator();
 
             activeContext = context;
-            CheckReturnEnum(NativeMethodsLinux.rcl_init_options_init(ref init_options, allocator));
-            CheckReturnEnum(NativeMethodsLinux.rcl_init(0, null, ref init_options, ref context.rclContext));
+            RclHelpers.CheckReturnEnum(NativeMethodsLinux.rcl_init_options_init(ref init_options, allocator));
+            RclHelpers.CheckReturnEnum(NativeMethodsLinux.rcl_init(0, null, ref init_options, ref context.rclContext));
         }
 
-        private void CheckReturnEnum(int ret)
-        {
-            switch((RCLReturnEnum)ret)
-            {
-                case RCLReturnEnum.RCL_RET_OK:
-                    break;
-                default:
-                    throw new RuntimeError(NativeMethodUtils.PopRclErrorString());
-            }
-        }
 
         public override void Shutdown()
         {
@@ -41,11 +31,9 @@ namespace rclcs
 
         public override void Shutdown(Context context)
         {
-            CheckReturnEnum(NativeMethodsLinux.rcl_shutdown(ref context.rclContext));
-            CheckReturnEnum(NativeMethodsLinux.rcl_context_fini(ref context.rclContext));
+            RclHelpers.CheckReturnEnum(NativeMethodsLinux.rcl_shutdown(ref context.rclContext));
+            RclHelpers.CheckReturnEnum(NativeMethodsLinux.rcl_context_fini(ref context.rclContext));
         }
-
-
     }
 }
 
