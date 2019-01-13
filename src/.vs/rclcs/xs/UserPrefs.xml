@@ -1,30 +1,19 @@
 ﻿<Properties StartupConfiguration="{CC0D4875-60FA-4318-854B-1924FED1C85B}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="RCLImpl/RCLHelpers.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/NodeTest.cs">
     <Files>
-      <File FileName="Test/NativeMetodsTest.cs" Line="214" Column="35" />
-      <File FileName="Test/InitShutdownTest.cs" Line="78" Column="9" />
-      <File FileName="Test/CreateNodeTest.cs" Line="55" Column="39" />
-      <File FileName="MarshallingHelpers.cs" Line="1" Column="1" />
-      <File FileName="RCLImpl/RCL.cs" Line="52" Column="89" NotebookId="1" />
-      <File FileName="RCLImpl/RCLLinux.cs" Line="29" Column="32" NotebookId="1" />
-      <File FileName="NativeMethods/NativeMethodsLinux.cs" Line="71" Column="66" NotebookId="1" />
-      <File FileName="NativeTypes/RCLTypes.cs" Line="28" Column="17" NotebookId="1" />
-      <File FileName="RCLImpl/RCLReturn.cs" Line="7" Column="17" NotebookId="1" />
-      <File FileName="NativeMethods/NativeMethodUtilsLinux.cs" Line="13" Column="47" NotebookId="1" />
-      <File FileName="NodeImpl/Node.cs" Line="12" Column="28" NotebookId="1" />
-      <File FileName="RCLExceptions.cs" Line="30" Column="39" NotebookId="1" />
-      <File FileName="RCLImpl/RCLHelpers.cs" Line="16" Column="1" NotebookId="1" />
+      <File FileName="Test/NodeTest.cs" Line="46" Column="1" />
+      <File FileName="Test/InitShutdownTest.cs" Line="1" Column="1" />
+      <File FileName="Node/Node.cs" Line="1" Column="1" />
     </Files>
     <Pads>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+      <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="rclcs" expanded="True">
             <Node name="rclcs" expanded="True">
-              <Node name="rclcs" expanded="True">
-                <Node name="CreateNodeTest" expanded="True" />
-                <Node name="InitShutdownTest" expanded="True" />
-                <Node name="NativeMethodsLinuxTest" selected="True" />
-              </Node>
+              <Node name="References" expanded="True" />
+              <Node name="Node" expanded="True" />
+              <Node name="RCL" selected="True" />
+              <Node name="Test" expanded="True" />
             </Node>
           </Node>
         </State>

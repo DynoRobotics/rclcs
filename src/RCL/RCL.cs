@@ -22,10 +22,10 @@ namespace rclcs
 
 	}
 
-    public class Rclcs
+    public class RCL
     {
         RCLBase Impl;
-        public Rclcs()
+        public RCL()
         {
             if (Environment.OSVersion.Platform == PlatformID.Win32NT) {
                 //FIXME: add windows impl

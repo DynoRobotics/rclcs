@@ -37,61 +37,65 @@
     <Reference Include="nunit.framework">
       <Package>nunit</Package>
     </Reference>
+    <Reference Include="rosidl_generator_cs_assemblies">
+      <HintPath>..\..\..\ros2_dotnet_ws\install\rosidl_generator_cs\lib\dotnet\rosidl_generator_cs_assemblies.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RCLImpl\RCLReturn.cs" />
-    <Compile Include="RCLImpl\RCLLinux.cs">
+    <Compile Include="RCL\RCLReturn.cs" />
+    <Compile Include="RCL\RCLLinux.cs">
     </Compile>
-    <Compile Include="RCLImpl\RCL.cs" />
+    <Compile Include="RCL\RCL.cs" />
     <Compile Include="NativeMethods\NativeMethodsLinux.cs" />
     <Compile Include="Test\NativeMetodsTest.cs" />
     <Compile Include="NativeTypes\RCLTypes.cs" />
     <Compile Include="Test\InitShutdownTest.cs" />
-    <Compile Include="ContextImpl\Context.cs" />
-    <Compile Include="RCLExceptions.cs" />
+    <Compile Include="Context\Context.cs" />
     <Compile Include="NativeMethods\NativeMethodUtilsLinux.cs" />
-    <Compile Include="NodeImpl\Node.cs" />
+    <Compile Include="Node\Node.cs" />
     <Compile Include="Test\CreateNodeTest.cs" />
-    <Compile Include="MarshallingHelpers.cs" />
-    <Compile Include="RCLImpl\RCLHelpers.cs" />
+    <Compile Include="RCL\RCLHelpers.cs" />
+    <Compile Include="Test\NodeTest.cs" />
+    <Compile Include="NativeMethods\MarshallingHelpers.cs" />
+    <Compile Include="Exceptions\RCLExceptions.cs" />
+    <Compile Include="Message\MessageWrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Test\" />
     <Folder Include="NativeMethods\" />
-    <Folder Include="ContextImpl\" />
+    <Folder Include="Context\" />
+    <Folder Include="Message\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="RCLImpl\RCL.cs.old" />
-    <None Include="RCLImpl\RCLLinux.cs.old" />
-    <None Include="RCLImpl\RCLWindows.cs.old" />
-    <None Include="ServiceImpl\rcl_service_linux.cs.old" />
-    <None Include="ClientImpl\rcl_client_linux.cs.old" />
-    <None Include="ServiceImpl\rcl_service.cs.old" />
-    <None Include="ServiceImpl\Service.cs.old" />
-    <None Include="NodeImpl\Node.cs.old" />
-    <None Include="NodeImpl\rcl_node.cs.old" />
-    <None Include="NodeImpl\rcl_node_linux.cs.old" />
-    <None Include="NodeImpl\rcl_node_windows.cs.old" />
-    <None Include="PublisherImpl\Publisher.cs.old" />
-    <None Include="PublisherImpl\rcl_publisher.cs.old" />
-    <None Include="PublisherImpl\rcl_publisher_linux.cs.old" />
-    <None Include="PublisherImpl\rcl_publisher_windows.cs.old" />
-    <None Include="ClientImpl\Client.cs.old" />
-    <None Include="ClientImpl\rcl_client.cs.old" />
-    <None Include="GraphImpl\Graph.cs.old" />
-    <None Include="GraphImpl\rcl_graph_linux.cs.old" />
-    <None Include="RCLErrorHandlingImpl\rcl_error_handling.cs.old" />
-    <None Include="RCLErrorHandlingImpl\rcl_error_handling_linux.cs.old" />
-    <None Include="RCLErrorHandlingImpl\RCLErrorHandling.cs.old" />
-    <None Include="SubscriptionImpl\rcl_subscription.cs.old" />
-    <None Include="SubscriptionImpl\rcl_subscription_linux.cs.old" />
-    <None Include="SubscriptionImpl\rcl_subscription_windwos.cs.old" />
-    <None Include="SubscriptionImpl\Subscription.cs.old" />
-    <None Include="RCLExceptions.cs.old" />
-    <None Include="Executor.cs.old" />
+    <None Include="RCL\RCL.cs.old" />
+    <None Include="RCL\RCLLinux.cs.old" />
+    <None Include="RCL\RCLWindows.cs.old" />
+    <None Include="Service\rcl_service_linux.cs.old" />
+    <None Include="Client\rcl_client_linux.cs.old" />
+    <None Include="Service\rcl_service.cs.old" />
+    <None Include="Service\Service.cs.old" />
+    <None Include="Node\Node.cs.old" />
+    <None Include="Node\rcl_node.cs.old" />
+    <None Include="Node\rcl_node_linux.cs.old" />
+    <None Include="Node\rcl_node_windows.cs.old" />
+    <None Include="Publisher\rcl_publisher.cs.old" />
+    <None Include="Publisher\rcl_publisher_linux.cs.old" />
+    <None Include="Publisher\rcl_publisher_windows.cs.old" />
+    <None Include="Client\Client.cs.old" />
+    <None Include="Client\rcl_client.cs.old" />
+    <None Include="Graph\Graph.cs.old" />
+    <None Include="Graph\rcl_graph_linux.cs.old" />
+    <None Include="RCLErrorHandling\rcl_error_handling.cs.old" />
+    <None Include="RCLErrorHandling\rcl_error_handling_linux.cs.old" />
+    <None Include="RCLErrorHandling\RCLErrorHandling.cs.old" />
+    <None Include="Subscription\rcl_subscription.cs.old" />
+    <None Include="Subscription\rcl_subscription_linux.cs.old" />
+    <None Include="Subscription\rcl_subscription_windwos.cs.old" />
+    <None Include="Subscription\Subscription.cs.old" />
     <None Include="Executors\SingleThreadedExecutor.cs.old" />
     <None Include="Test\NodeTest.cs.old" />
     <None Include="NativeTypes\rcl_allocator_t.cs.old" />
@@ -112,13 +116,16 @@
     <None Include="NativeTypes\rosidl_message_type_support_t.cs.old" />
     <None Include="NativeTypes\rosidl_service_type_support_t.cs.old" />
     <None Include="Test\NativeTypesTest.cs.old" />
-    <None Include="ClientRecievedResponseEventArgs.cs.old" />
-    <None Include="Executable.cs.old" />
-    <None Include="IRosMessage.cs.old" />
-    <None Include="IRosService.cs.old" />
-    <None Include="IRosTransportItem.cs.old" />
-    <None Include="MessageRecievedEventArgs.cs.old" />
-    <None Include="MessageWrapper.cs.old" />
-    <None Include="ServiceRecievedRequestEventArgs.cs.old" />
+    <None Include="Publisher\Publisher.cs.old" />
+    <None Include="Executors\Executable.cs.old" />
+    <None Include="Executors\Executor.cs.old" />
+    <None Include="Message\IRosMessage.cs.old" />
+    <None Include="Message\MessageRecievedEventArgs.cs.old" />
+    <None Include="Message\MessageWrapper.cs.old" />
+    <None Include="Service\IRosService.cs.old" />
+    <None Include="Service\ServiceRecievedRequestEventArgs.cs.old" />
+    <None Include="Service\ClientRecievedResponseEventArgs.cs.old" />
+    <None Include="Message\IRosTransportItem.cs.old" />
+    <None Include="Exceptions\RCLExceptions.cs.old" />
   </ItemGroup>
 </Project>

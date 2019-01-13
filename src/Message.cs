@@ -14,14 +14,14 @@ namespace rclcs
 			set{ data = value; }
 		}*/
 		public void Dispose()
-		{ 
+		{
 			Dispose(true);
-			GC.SuppressFinalize(this);           
+			GC.SuppressFinalize(this);
 		}
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposed)
-				return; 
+				return;
 
 			if (disposing) {
 				// Free any other managed objects here.
@@ -34,7 +34,7 @@ namespace rclcs
 			//
 			disposed = true;
 
-	
+
 		}
 
 		~Message()
@@ -44,4 +44,3 @@ namespace rclcs
 
 	}
 }
-

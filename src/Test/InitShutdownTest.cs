@@ -8,7 +8,7 @@ namespace rclcs.Test
     [TestFixture]
     public class InitShutdownTest
     {
-        Rclcs rclcs = new Rclcs();
+        RCL rclcs = new RCL();
 
         [Test]
         public void Init()

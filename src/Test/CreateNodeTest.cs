@@ -5,7 +5,7 @@ namespace rclcs.Test
     [TestFixture]
     public class CreateNodeTest
     {
-        Rclcs rclcs = new Rclcs();
+        RCL rclcs = new RCL();
         Context context;
 
         [SetUp]

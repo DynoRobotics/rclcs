@@ -26,6 +26,11 @@ namespace rclcs
             }
         }
 
+        public string Name
+        {
+            get { return MarshallingHelpers.PtrToString(SafeNativeMethodsLinux.rcl_node_get_name(ref rclNode)); }
+        }
+
         public string Namespace
         {
             get { return MarshallingHelpers.PtrToString(SafeNativeMethodsLinux.rcl_node_get_namespace(ref rclNode)); }

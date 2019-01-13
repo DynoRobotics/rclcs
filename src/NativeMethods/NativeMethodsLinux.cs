@@ -27,11 +27,13 @@ namespace rclcs
         internal static extern int rcl_context_fini(ref rcl_context_t context);
 
         [DllImport(LibPathsLinux.RCL)]
-        internal static extern int rcl_node_init(ref rcl_node_t node, string name, string nodeNamespace, ref rcl_context_t context, ref rcl_node_options_t default_options);
+        internal static extern int rcl_node_init(ref rcl_node_t node, string name, string node_namespace, ref rcl_context_t context, ref rcl_node_options_t default_options);
 
         [DllImport(LibPathsLinux.RCL)]
         internal static extern int rcl_node_fini(ref rcl_node_t node);
 
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern int rcl_publisher_init(ref rcl_publisher_t publisher, ref rcl_node_t node, ref rosidl_message_type_support_t type_support, string topic_name, rcl_publisher_options_t options);
 
         // RCUtils
         [DllImport(LibPathsLinux.RCUtils, EntryPoint = "rcutils_get_error_string")]
@@ -67,10 +69,15 @@ namespace rclcs
         [DllImport(LibPathsLinux.RCL)]
         internal static extern IntPtr rcl_node_get_name(ref rcl_node_t node);
 
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern rcl_publisher_options_t rcl_publisher_get_default_options();
+
+        [DllImport(LibPathsLinux.RCL)]
+        internal static extern rcl_publisher_t rcl_get_zero_initialized_publisher();
+
         // RCUtils
         [DllImport(LibPathsLinux.RCUtils, EntryPoint = "rcutils_get_default_allocator")]
         internal static extern rcl_allocator_t rcl_get_default_allocator();
-
     
     }
 
