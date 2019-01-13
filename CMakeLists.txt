@@ -2,12 +2,21 @@ cmake_minimum_required(VERSION 3.5)
 
 project(rclcs C)
 
+# Default to C11
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 11)
+endif()
+if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra)
+endif()
+
 find_package(ament_cmake_export_assemblies REQUIRED)
 
 find_package(ament_cmake REQUIRED)
 find_package(rcl REQUIRED)
 find_package(rcl_interfaces REQUIRED)
 find_package(rmw REQUIRED)
+find_package(rcutils REQUIRED)
 find_package(rmw_implementation REQUIRED)
 find_package(rmw_implementation_cmake REQUIRED)
 find_package(rosidl_generator_c REQUIRED)
@@ -18,23 +27,46 @@ find_package(DotNETExtra REQUIRED)
 find_package(rcldotnet_common REQUIRED)
 find_package(rosidl_generator_cs REQUIRED)
 
+# Only build the library if a C typesupport exists
+get_rmw_typesupport(typesupport_impls "rmw_implementation" LANGUAGE "c")
+if(typesupport_impls STREQUAL "")
+  message(STATUS "Skipping rclcs because no C typesupport library was found.")
+  return()
+endif()
+
+function(configure_csharp_c_extension_library _library_name)
+  install(TARGETS ${_library_name}
+    DESTINATION lib
+  )
+endfunction()
+
+add_library(
+  rclcs_native
+  SHARED src/_rclcs.c
+)
+configure_csharp_c_extension_library(rclcs_native)
+ament_target_dependencies(rclcs_native
+  "rcl"
+  "rcl_yaml_param_parser"
+  "rcutils"
+)
+
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--no-undefined")
 
 set(CS_SOURCES
-  src/Exceptions/RCLExceptions.cs
-  src/Test/MessageTest.cs
+  src/dotnet/Exceptions.cs
 )
 
 foreach(_assembly_dep ${rcldotnet_common_ASSEMBLIES_DLL})
-  list(APPEND _assembly_deps_dll "${_assembly_dep}")
+list(APPEND _assembly_deps_dll "${_assembly_dep}")
 endforeach()
 
 foreach(_assembly_dep ${rosidl_generator_cs_ASSEMBLIES_DLL})
-  list(APPEND _assembly_deps_dll "${_assembly_dep}")
+list(APPEND _assembly_deps_dll "${_assembly_dep}")
 endforeach()
 
 add_dotnet_library(${PROJECT_NAME}
-  SOURCES
+SOURCES
   ${CS_SOURCES}
   INCLUDE_DLLS
   ${_assembly_deps_dll}

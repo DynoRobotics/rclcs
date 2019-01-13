@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{CC0D4875-60FA-4318-854B-1924FED1C85B}|Unit Tests">
+  <MonoDevelop.Ide.Workbench ActiveDocument="dotnet/NUnitTestClass.cs">
+    <Files>
+      <File FileName="dotnet/NUnitTestClass.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.rclcs PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x64" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

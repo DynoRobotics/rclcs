@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{CC0D4875-60FA-4318-854B-1924FED1C85B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>rclcs</RootNamespace>
+    <AssemblyName>rclcs</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <AssemblyOriginatorKeyFile>rclcs.snk</AssemblyOriginatorKeyFile>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <Package>nunit</Package>
+    </Reference>
+    <Reference Include="rcldotnet_common">
+      <HintPath>..\..\..\..\install\rcldotnet_common\lib\rcldotnet_common\dotnet\rcldotnet_common.dll</HintPath>
+    </Reference>
+    <Reference Include="rosidl_generator_cs">
+      <HintPath>..\..\..\..\install\rosidl_generator_cs\lib\dotnet\rosidl_generator_cs.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Test\InitShutdownTest.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Rclcs.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="NativeTypes.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Test\NativeMetodsTest.cs" />
+    <Compile Include="MarshallingHelpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Test\CreateNodeTest.cs.old" />
+    <None Include="NativeMethodsLinux.cs.old" />
+  </ItemGroup>
+</Project>

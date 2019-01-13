@@ -1,0 +1,11 @@
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/bin/Debug/rclcs.dll
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/bin/Debug/rclcs.pdb
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/obj/x64/Debug/rclcs.csprojAssemblyReference.cache
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/obj/x64/Debug/rclcs.csproj.CoreCompileInputs.cache
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/obj/x64/Debug/rclcs.dll
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/obj/x64/Debug/rclcs.pdb
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/bin/Debug/rcldotnet_common.dll
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/bin/Debug/rosidl_generator_cs.dll
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/bin/Debug/rcldotnet_common.pdb
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/bin/Debug/rosidl_generator_cs.pdb
+/home/sam/ros2_dotnet_ws/src/rclcs/src/dotnet/obj/x64/Debug/rclcs.csproj.CopyComplete
