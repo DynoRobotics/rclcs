@@ -269,10 +269,85 @@ namespace rclcs.TestNativeMethods
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
             ret = (RCLReturnEnum)NativeMethods.rcl_publisher_fini(ref publisher, ref node);
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
-
         }
 
     }
 
+    [TestFixture]
+    public class Subscription
+    {
+        rcl_context_t context;
+        rcl_node_t node;
 
+        [SetUp]
+        public void SetUp()
+        {
+            rcl_init_options_t init_options = NativeMethods.rcl_get_zero_initialized_init_options();
+            rcl_allocator_t allocator = NativeMethods.rcl_get_default_allocator();
+            NativeMethods.rcl_init_options_init(ref init_options, allocator);
+            context = NativeMethods.rcl_get_zero_initialized_context();
+
+            NativeMethods.rcl_init(0, null, ref init_options, ref context);
+
+            node = NativeMethods.rcl_get_zero_initialized_node();
+            rcl_node_options_t defaultNodeOptions = NativeMethods.rcl_node_get_default_options();
+
+            string name = "publisher_test";
+            string nodeNamespace = "/ns";
+            NativeMethods.rcl_node_init(ref node, name, nodeNamespace, ref context, ref defaultNodeOptions);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            NativeMethods.rcl_node_fini(ref node);
+            NativeMethods.rcl_shutdown(ref context);
+            NativeMethods.rcl_context_fini(ref context);
+        }
+
+        [Test]
+        public void GetZeroInitializedSubscription()
+        {
+            rcl_subscription_t subscription = NativeMethods.rcl_get_zero_initialized_subscription();
+        }
+
+        [Test]
+        public void SubscriptionGetDefaultOptions()
+        {
+            rcl_subscription_options_t subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
+        }
+
+        [Test]
+        public void SubscriptionInit()
+        {
+            RCLReturnEnum ret;
+            rcl_subscription_t subscription = NativeMethods.rcl_get_zero_initialized_subscription();
+            rcl_subscription_options_t subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
+            MethodInfo m = typeof(std_msgs.msg.Bool).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
+            IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+            ret = (RCLReturnEnum)NativeMethods.rcl_subscription_init(ref subscription, ref node, typeSupportHandle, "/subscriber_test_topic", ref subscriptionOptions);
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
+            ret = (RCLReturnEnum)NativeMethods.rcl_subscription_fini(ref subscription, ref node);
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
+        }
+
+        [Test]
+        public void SubscriptionIsValid()
+        {
+            RCLReturnEnum ret;
+            rcl_subscription_t subscription = NativeMethods.rcl_get_zero_initialized_subscription();
+            Assert.That(NativeMethods.rcl_subscription_is_valid(ref subscription), Is.False);
+            NativeMethods.rcl_reset_error();
+
+            rcl_subscription_options_t subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
+            MethodInfo m = typeof(std_msgs.msg.Bool).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
+            IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+            ret = (RCLReturnEnum)NativeMethods.rcl_subscription_init(ref subscription, ref node, typeSupportHandle, "/subscriber_test_topic", ref subscriptionOptions);
+            Assert.That(NativeMethods.rcl_subscription_is_valid(ref subscription), Is.True);
+
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
+            ret = (RCLReturnEnum)NativeMethods.rcl_subscription_fini(ref subscription, ref node);
+        }
+
+    }
 }

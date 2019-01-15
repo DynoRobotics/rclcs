@@ -62,6 +62,7 @@
     <Compile Include="Test\MessagesTest.cs" />
     <Compile Include="Test\NodeTest.cs" />
     <Compile Include="Publisher.cs" />
+    <Compile Include="Subscription.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />

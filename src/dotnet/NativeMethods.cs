@@ -193,6 +193,56 @@ namespace rclcs
             "rcl_publish"),
             typeof(PublishType));
 
+        // rcl_get_zero_initialized_subscription
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate rcl_subscription_t GetZeroInitializedSubcriptionType();
+        internal static GetZeroInitializedSubcriptionType
+            rcl_get_zero_initialized_subscription =
+            (GetZeroInitializedSubcriptionType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_get_zero_initialized_subscription"),
+            typeof(GetZeroInitializedSubcriptionType));
+
+        // rcl_subscription_get_default_options
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate rcl_subscription_options_t SubscriptionGetDefaultOptionsType();
+        internal static SubscriptionGetDefaultOptionsType
+            rcl_subscription_get_default_options =
+            (SubscriptionGetDefaultOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_subscription_get_default_options"),
+            typeof(SubscriptionGetDefaultOptionsType));
+
+        // rcl_subscription_init
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int SubscriptionInitType(ref rcl_subscription_t subscription, ref rcl_node_t node, IntPtr type_support_ptr, string topic_name, ref rcl_subscription_options_t subscription_options);
+        internal static SubscriptionInitType
+            rcl_subscription_init =
+            (SubscriptionInitType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_subscription_init"),
+            typeof(SubscriptionInitType));
+
+        // rcl_subscription_fini
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int SubscriptionFiniType(ref rcl_subscription_t subscription, ref rcl_node_t node);
+        internal static SubscriptionFiniType
+            rcl_subscription_fini =
+            (SubscriptionFiniType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_subscription_fini"),
+            typeof(SubscriptionFiniType));
+
+        // rcl_subscription_is_valid
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool SubscriptionIsValidType(ref rcl_subscription_t subscription);
+        internal static SubscriptionIsValidType
+            rcl_subscription_is_valid =
+            (SubscriptionIsValidType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_subscription_is_valid"),
+            typeof(SubscriptionIsValidType));
+
         // --- RCUtils
         private static readonly IntPtr nativeRCUtils = dllLoadUtils.LoadLibraryNoSuffix("rcutils");
 

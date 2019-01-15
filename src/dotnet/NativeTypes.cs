@@ -60,6 +60,18 @@ namespace rclcs
         private IntPtr impl;
     }
 
+    public struct rcl_subscription_t
+    {
+        private IntPtr impl;
+    }
+
+    public struct rcl_subscription_options_t
+    {
+        private rmw_qos_profile_t qos;
+        private bool ignore_local_publications;
+        private rcl_allocator_t allocator;
+    }
+
     // rmw
 
     public struct rmw_qos_profile_t

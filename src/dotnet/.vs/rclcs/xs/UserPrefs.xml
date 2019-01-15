@@ -1,44 +1,32 @@
 ﻿<Properties StartupConfiguration="{CC0D4875-60FA-4318-854B-1924FED1C85B}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Context.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/NativeMetodsTest.cs">
     <Files>
-      <File FileName="NativeMethods.cs" Line="197" Column="74" />
-      <File FileName="Rclcs.cs" Line="11" Column="51" />
+      <File FileName="NativeMethods.cs" Line="214" Column="56" />
+      <File FileName="Rclcs.cs" Line="19" Column="44" />
       <File FileName="Utils.cs" Line="38" Column="42" />
       <File FileName="Enums.cs" Line="1" Column="1" />
-      <File FileName="Node.cs" Line="78" Column="10" />
-      <File FileName="Context.cs" Line="10" Column="22" />
+      <File FileName="Node.cs" Line="76" Column="101" />
+      <File FileName="Context.cs" Line="12" Column="43" />
       <File FileName="Test/CreateNodeTest.cs" Line="27" Column="39" />
-      <File FileName="Test/InitShutdownTest.cs" Line="44" Column="1" NotebookId="1" />
-      <File FileName="Test/NativeMetodsTest.cs" Line="254" Column="90" NotebookId="1" />
-      <File FileName="NativeMethodsLinux.cs.old" Line="76" Column="82" NotebookId="1" />
-      <File FileName="NativeTypes.cs" Line="95" Column="1" NotebookId="1" />
+      <File FileName="Test/InitShutdownTest.cs" Line="25" Column="11" NotebookId="1" />
+      <File FileName="Test/NativeMetodsTest.cs" Line="274" Column="12" NotebookId="1" />
+      <File FileName="NativeTypes.cs" Line="74" Column="5" NotebookId="1" />
       <File FileName="Test/MessagesTest.cs" Line="22" Column="30" NotebookId="1" />
-      <File FileName="Test/NodeTest.cs" Line="44" Column="14" NotebookId="1" />
-      <File FileName="Publisher.cs" Line="7" Column="50" NotebookId="1" />
+      <File FileName="Test/NodeTest.cs" Line="63" Column="6" NotebookId="1" />
+      <File FileName="Publisher.cs" Line="52" Column="1" NotebookId="1" />
+      <File FileName="Subscription.cs" Line="24" Column="25" NotebookId="1" />
     </Files>
     <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="rclcs" expanded="True">
-            <Node name="rclcs" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Test" expanded="True" />
-              <Node name="Context.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
           <Node name="rclcs" expanded="True">
             <Node name="rclcs" expanded="True">
               <Node name="rclcs" expanded="True">
                 <Node name="Test" expanded="True">
-                  <Node name="NodeTest" expanded="True" selected="True" />
+                  <Node name="CreateNodeTest" selected="True" />
+                  <Node name="NodeTest" expanded="True" />
                 </Node>
-                <Node name="TestNativeMethods" expanded="True">
-                  <Node name="Publisher" expanded="True" />
-                </Node>
+                <Node name="TestNativeMethods" expanded="True" />
               </Node>
             </Node>
           </Node>

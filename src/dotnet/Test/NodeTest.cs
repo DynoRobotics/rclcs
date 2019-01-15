@@ -54,5 +54,11 @@ namespace rclcs.Test
             }
         }
 
+        [Test]
+        public void CreateSubscriber()
+        {
+            
+        }
+
     }
 }
