@@ -1,24 +1,41 @@
 ﻿<Properties StartupConfiguration="{CC0D4875-60FA-4318-854B-1924FED1C85B}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Utils.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/NativeMetodsTest.cs">
     <Files>
-      <File FileName="NativeMethods.cs" Line="69" Column="71" />
-      <File FileName="Rclcs.cs" Line="5" Column="6" />
-      <File FileName="Context.cs" Line="13" Column="1" />
-      <File FileName="Utils.cs" Line="43" Column="32" />
+      <File FileName="NativeMethods.cs" Line="18" Column="73" />
+      <File FileName="Rclcs.cs" Line="11" Column="51" />
+      <File FileName="Utils.cs" Line="38" Column="42" />
       <File FileName="Enums.cs" Line="1" Column="1" />
-      <File FileName="Test/InitShutdownTest.cs" Line="20" Column="20" NotebookId="1" />
-      <File FileName="Test/NativeMetodsTest.cs" Line="28" Column="9" NotebookId="1" />
-      <File FileName="NativeMethodsLinux.cs.old" Line="40" Column="50" NotebookId="1" />
+      <File FileName="Node.cs" Line="18" Column="16" />
+      <File FileName="Context.cs" Line="24" Column="19" />
+      <File FileName="Test/InitShutdownTest.cs" Line="44" Column="1" NotebookId="1" />
+      <File FileName="Test/NativeMetodsTest.cs" Line="289" Column="44" NotebookId="1" />
+      <File FileName="NativeMethodsLinux.cs.old" Line="76" Column="82" NotebookId="1" />
+      <File FileName="Test/CreateNodeTest.cs" Line="11" Column="28" NotebookId="1" />
+      <File FileName="NativeTypes.cs" Line="95" Column="1" NotebookId="1" />
     </Files>
     <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="rclcs" expanded="True">
+            <Node name="rclcs" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Test" expanded="True">
+                <Node name="NativeMetodsTest.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
           <Node name="rclcs" expanded="True">
             <Node name="rclcs" expanded="True">
               <Node name="rclcs" expanded="True">
-                <Node name="Test" expanded="True" />
                 <Node name="TestNativeMethods" expanded="True">
-                  <Node name="RCL" expanded="True" />
+                  <Node name="Messages" expanded="True">
+                    <Node name="SetBoolData" selected="True" />
+                  </Node>
+                  <Node name="Publisher" expanded="True" />
                 </Node>
               </Node>
             </Node>

@@ -9,20 +9,22 @@ namespace rclcs
 	/// </summary>
 	public class Context
 	{
-        internal rcl_context_t handle;
+        internal rcl_context_t rclContext;
 
         public Context()
         {
-            handle = NativeMethods.rcl_get_zero_initialized_context();
+            rclContext = NativeMethods.rcl_get_zero_initialized_context();
         }
 
         public bool Ok
         {
-            get { return false; }
+            get { return NativeMethods.rcl_context_is_valid(ref rclContext); }
         }
 
         ~Context()
         {
+            //TODO: figure out if this is correct...
+            NativeMethods.rcl_context_fini(ref rclContext);
         }
 
     }

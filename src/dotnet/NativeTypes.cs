@@ -1,6 +1,8 @@
 using System;
 namespace rclcs
 {
+    #pragma warning disable 0169
+
     // rcl
     public struct rcl_allocator_t
     {
@@ -91,13 +93,6 @@ namespace rclcs
         RMW_QOS_POLICY_DURABILITY_VOLATILE
     }
 
-    // rosidl
-    public struct rosidl_message_type_support_t
-    {
-        private IntPtr typesupport_indentifier;
-        private IntPtr data;
-        private IntPtr func;
-    }
-
+    #pragma warning restore 0169
 }
 

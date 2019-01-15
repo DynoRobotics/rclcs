@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 
 using ROS2.Utils;
+using ROS2.Interfaces;
 
 
 namespace rclcs
@@ -161,6 +162,36 @@ namespace rclcs
             nativeRCL,
             "rcl_get_zero_initialized_publisher"),
             typeof(GetZeroInitiazizedPublisherType));
+
+        // rcl_publisher_init
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int PublisherInitType(ref rcl_publisher_t publisher, ref rcl_node_t node, IntPtr type_support_ptr, string topic_name, ref rcl_publisher_options_t publisher_options);
+        internal static PublisherInitType
+            rcl_publisher_init =
+            (PublisherInitType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_publisher_init"),
+            typeof(PublisherInitType));
+
+        // rcl_publisher_fini
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int PublisherFiniType(ref rcl_publisher_t publisher, ref rcl_node_t node);
+        internal static PublisherFiniType
+            rcl_publisher_fini =
+            (PublisherFiniType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_publisher_fini"),
+            typeof(PublisherFiniType));
+
+        // rcl_publisher_fini
+        //[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        //internal delegate int PublisherFiniType(ref rcl_publisher_t publisher, ref rcl_node_t node);
+        //internal static PublisherFiniType
+            //rcl_publisher_fini =
+            //(PublisherFiniType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            //nativeRCL,
+            //"rcl_publisher_fini"),
+            //typeof(PublisherFiniType));
 
         // --- RCUtils
         private static readonly IntPtr nativeRCUtils = dllLoadUtils.LoadLibraryNoSuffix("rcutils");

@@ -8,70 +8,64 @@ namespace rclcs.Test
     [TestFixture]
     public class InitShutdownTest
     {
-        //[Test]
-        //public void Init()
-        //{
-        //    Context context = new Context();
-        //    Rclcs.Init(context);
-        //    try
-        //    {
-        //        Rclcs.Shutdown(context);
-        //    }
-        //    catch (RuntimeError)
-        //    {
-        //    }
-        //}
+        [Test]
+        public void Init()
+        {
+            Context context = new Context();
+            Rclcs.Init(context);
+            try
+            {
+                Rclcs.Shutdown(context);
+            }
+            catch (RuntimeError)
+            {
+            }
+        }
 
-        //[Test]
-        //public void InitShutdown()
-        //{
-        //    Context context = new Context();
-        //    rclcs.Init(context);
-        //    rclcs.Shutdown(context);
-        //}
+        [Test]
+        public void InitShutdown()
+        {
+           Context context = new Context();
+            Rclcs.Init(context);
+            Rclcs.Shutdown(context);
+        }
 
-        //[Test]
-        //public void InitShutdownSequence()
-        //{
-        //    // local
-        //    Context context = new Context();
-        //    rclcs.Init(context);
-        //    rclcs.Shutdown(context);
-        //    context = new Context();
-        //    rclcs.Init(context);
-        //    rclcs.Shutdown(context);
+        [Test]
+        public void InitShutdownSequence()
+        {
+            // local
+            Context context = new Context();
+            Rclcs.Init(context);
+            Rclcs.Shutdown(context);
+            context = new Context();
+            Rclcs.Init(context);
+            Rclcs.Shutdown(context);
+        }
 
-        //    // global
-        //    rclcs.Init();
-        //    rclcs.Shutdown();
-        //    rclcs.Init();
-        //    rclcs.Shutdown();
-        //}
+        [Test]
+        public void DoubleInit()
+        {
+            Context context = new Context();
+            Rclcs.Init(context);
+            Assert.That(() => { Rclcs.Init(context); }, Throws.TypeOf<RuntimeError>());
+            Rclcs.Shutdown(context);
+        }
 
-        //[Test]
-        //public void DoubleInit()
-        //{
-        //    Context context = new Context();
-        //    rclcs.Init(context);
-        //    Assert.That(() => { rclcs.Init(context); }, Throws.TypeOf<RuntimeError>());
-        //    rclcs.Shutdown(context);
-        //}
+        [Test]
+        public void DoubleShutdown()
+        {
+            Context context = new Context();
+            Rclcs.Init(context);
+            Rclcs.Shutdown(context);
+            Assert.That(() => { Rclcs.Shutdown(context); }, Throws.TypeOf<RuntimeError>());
+        }
 
-        //[Test]
-        //public void DoubleShutdown()
-        //{
-        //    Context context = new Context();
-        //    rclcs.Init(context);
-        //    rclcs.Shutdown(context);
-        //    Assert.That(() => { rclcs.Shutdown(context); }, Throws.TypeOf<RuntimeError>());
-        //}
-
-        //[Test]
-        //public void CreateNodeWithoutInit()
-        //{
-        //    Context context = new Context();
-        //    Assert.That(() => { rclcs.CreateNode("foo", context); }, Throws.TypeOf<NotInitializedException>());
-        //}
+        [Test]
+        public void CreateNodeWithoutInit()
+        {
+            Context context = new Context();
+            Assert.That(() => { Rclcs.CreateNode("foo", context); }, Throws.TypeOf<NotInitializedException>());
+        }
 
         
     }
