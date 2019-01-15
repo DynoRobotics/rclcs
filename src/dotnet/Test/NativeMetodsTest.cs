@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Reflection;
 using System.Text;
 using rclcs;
 
@@ -245,9 +246,9 @@ namespace rclcs.TestNativeMethods
             RCLReturnEnum ret;
             rcl_publisher_t publisher = NativeMethods.rcl_get_zero_initialized_publisher();
             rcl_publisher_options_t publisherOptions = NativeMethods.rcl_publisher_get_default_options();
-            std_msgs.msg.Bool msg = new std_msgs.msg.Bool();
-            IntPtr typeSupportPtr = msg.typeSupportHandle;
-            ret = (RCLReturnEnum)NativeMethods.rcl_publisher_init(ref publisher, ref node, typeSupportPtr, "topic_name", ref publisherOptions);
+            MethodInfo m = typeof(std_msgs.msg.Bool).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
+            IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+            ret = (RCLReturnEnum)NativeMethods.rcl_publisher_init(ref publisher, ref node, typeSupportHandle, "publisher_test_topic", ref publisherOptions);
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
 
             ret = (RCLReturnEnum)NativeMethods.rcl_publisher_fini(ref publisher, ref node);
@@ -261,10 +262,11 @@ namespace rclcs.TestNativeMethods
             rcl_publisher_t publisher = NativeMethods.rcl_get_zero_initialized_publisher();
             rcl_publisher_options_t publisherOptions = NativeMethods.rcl_publisher_get_default_options();
             std_msgs.msg.Bool msg = new std_msgs.msg.Bool();
-            IntPtr typeSupportPtr = msg.typeSupportHandle;
-            ret = (RCLReturnEnum)NativeMethods.rcl_publisher_init(ref publisher, ref node, typeSupportPtr, "topic_name", ref publisherOptions);
+            IntPtr typeSupportHandle = msg.TypeSupportHandle;
+            ret = (RCLReturnEnum)NativeMethods.rcl_publisher_init(ref publisher, ref node, typeSupportHandle, "/publisher_test_topic", ref publisherOptions);
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
-
+            ret = (RCLReturnEnum)NativeMethods.rcl_publish(ref publisher, msg.Handle);
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
             ret = (RCLReturnEnum)NativeMethods.rcl_publisher_fini(ref publisher, ref node);
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
 
@@ -272,21 +274,5 @@ namespace rclcs.TestNativeMethods
 
     }
 
-    [TestFixture]
-    public class Messages
-    {
-        [Test]
-        public void CreateMessage()
-        {
-            std_msgs.msg.Bool msg = new std_msgs.msg.Bool();
-        }
 
-        [Test]
-        public void SetBoolData()
-        {
-            std_msgs.msg.Bool msg = new std_msgs.msg.Bool();
-            msg.data = true;
-            Assert.That(msg.data, Is.True);
-        }
-    }
 }

@@ -9,22 +9,24 @@ namespace rclcs
 	/// </summary>
 	public class Context
 	{
-        internal rcl_context_t rclContext;
+        //TODO: Change to IDisposable?
+
+        internal rcl_context_t handle;
 
         public Context()
         {
-            rclContext = NativeMethods.rcl_get_zero_initialized_context();
+            handle = NativeMethods.rcl_get_zero_initialized_context();
         }
 
         public bool Ok
         {
-            get { return NativeMethods.rcl_context_is_valid(ref rclContext); }
+            get { return NativeMethods.rcl_context_is_valid(ref handle); }
         }
 
         ~Context()
         {
             //TODO: figure out if this is correct...
-            NativeMethods.rcl_context_fini(ref rclContext);
+            NativeMethods.rcl_context_fini(ref handle);
         }
 
     }

@@ -4,3 +4,4 @@ src/rclcs.xml
 *.dll
 *.exe
 *.mdb
+*mono_crash*

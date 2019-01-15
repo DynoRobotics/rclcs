@@ -19,3 +19,4 @@
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/obj/x64/Debug/rclcs.pdb
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/std_msgs_assembly.dll
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/std_msgs_assembly.pdb
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/rcldotnet_common.dll

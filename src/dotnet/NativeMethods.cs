@@ -183,15 +183,15 @@ namespace rclcs
             "rcl_publisher_fini"),
             typeof(PublisherFiniType));
 
-        // rcl_publisher_fini
-        //[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        //internal delegate int PublisherFiniType(ref rcl_publisher_t publisher, ref rcl_node_t node);
-        //internal static PublisherFiniType
-            //rcl_publisher_fini =
-            //(PublisherFiniType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
-            //nativeRCL,
-            //"rcl_publisher_fini"),
-            //typeof(PublisherFiniType));
+        // rcl_publish
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int PublishType(ref rcl_publisher_t publisher, IntPtr message);
+        internal static PublishType
+            rcl_publish =
+            (PublishType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_publish"),
+            typeof(PublishType));
 
         // --- RCUtils
         private static readonly IntPtr nativeRCUtils = dllLoadUtils.LoadLibraryNoSuffix("rcutils");

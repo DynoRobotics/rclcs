@@ -37,11 +37,11 @@
     <Reference Include="nunit.framework">
       <Package>nunit</Package>
     </Reference>
-    <Reference Include="rcldotnet_common">
-      <HintPath>..\..\..\..\install\rcldotnet_common\lib\rcldotnet_common\dotnet\rcldotnet_common.dll</HintPath>
-    </Reference>
     <Reference Include="std_msgs_assembly">
       <HintPath>..\..\..\..\..\install\std_msgs\lib\dotnet\std_msgs_assembly.dll</HintPath>
+    </Reference>
+    <Reference Include="rcldotnet_common">
+      <HintPath>..\..\..\..\..\install\rcldotnet_common\lib\rcldotnet_common\dotnet\rcldotnet_common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -59,6 +59,9 @@
     <Compile Include="Test\CreateNodeTest.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="Test\MessagesTest.cs" />
+    <Compile Include="Test\NodeTest.cs" />
+    <Compile Include="Publisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
