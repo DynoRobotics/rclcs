@@ -12,9 +12,17 @@ namespace rclcs
         internal rcl_node_t handle;
 
         private bool disposed;
-        
+
+        private IList<ISubscriptionBase> subscriptions;
+        private IList<IPublisherBase> publishers;
+
+        public IList<ISubscriptionBase> Subscriptions { get { return subscriptions; } }
+
         public Node(string nodeName, Context context, string nodeNamespace = null)
         {
+            subscriptions = new List<ISubscriptionBase>();
+            publishers = new List<IPublisherBase>();
+
             if (nodeNamespace == null) { nodeNamespace = "/";  }
             if (context.Ok)
             {
@@ -59,6 +67,16 @@ namespace rclcs
                     // Dispose managed resources.
                 }
 
+                foreach(ISubscriptionBase subscription in subscriptions)
+                {
+                    subscription.Dispose();
+                }
+
+                foreach(IPublisherBase publisher in publishers)
+                {
+                    publisher.Dispose();
+                }
+
                 DestroyNode();
 
                 disposed = true;
@@ -73,14 +91,16 @@ namespace rclcs
 
         public Publisher<T> CreatePublisher<T>(string topic) where T : IRclcsMessage
         {
-            // TODO(samiam): Add to list and call dispose for all publishers before destroying node?
-            return new Publisher<T>(topic, this);
+            Publisher<T> publisher = new Publisher<T>(topic, this);
+            publishers.Add(publisher);
+            return publisher;
         }
 
         public Subscription<T> CreateSubscription<T>(string topic, Action<T> callback) where T : IRclcsMessage
         {
-            // TODO(samiam): Add to list and call dispose for all subscribers before destroying node?
-            return new Subscription<T>(topic, this, callback);
+            Subscription<T> subscription = new Subscription<T>(topic, this, callback);
+            subscriptions.Add(subscription);
+            return subscription;
         }
 
     }

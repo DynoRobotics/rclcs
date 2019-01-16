@@ -80,8 +80,13 @@
     <Compile Include="Executors.cs" />
     <Compile Include="IExecutor.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Test\WaitTest.cs" />
+    <Compile Include="Test\WaitSetTest.cs" />
     <Compile Include="Test\TestUtils.cs" />
+    <Compile Include="WaitSet.cs" />
+    <Compile Include="ISubscriptionBase.cs" />
+    <Compile Include="ISubscription.cs" />
+    <Compile Include="IPublisherBase.cs" />
+    <Compile Include="IPublisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />

@@ -374,7 +374,6 @@ namespace rclcs.TestNativeMethods
             TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_fini(ref waitSet));
             TestUtils.AssertRetOk(NativeMethods.rcl_subscription_fini(ref subscription, ref node));
         }
-
     }
 
 

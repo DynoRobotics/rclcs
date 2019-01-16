@@ -4,7 +4,7 @@ using ROS2.Interfaces;
 namespace rclcs
 {
 
-    public class Publisher<T>: System.IDisposable where T : IRclcsMessage
+    public class Publisher<T>: IPublisher<T> where T : IRclcsMessage
     {
         rcl_publisher_t handle;
         rcl_node_t nodeHandle;

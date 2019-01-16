@@ -12,6 +12,7 @@ namespace rclcs
         //TODO: Init context when created?
 
         internal rcl_context_t handle;
+        private rcl_allocator_t allocator;
 
         private bool isInit;
         private bool disposed;
@@ -19,12 +20,12 @@ namespace rclcs
         public Context()
         {
             handle = NativeMethods.rcl_get_zero_initialized_context();
+            allocator = NativeMethods.rcl_get_default_allocator();
         }
 
         public void Init()
         {
             rcl_init_options_t init_options = NativeMethods.rcl_get_zero_initialized_init_options();
-            rcl_allocator_t allocator = NativeMethods.rcl_get_default_allocator();
 
             Utils.CheckReturnEnum(NativeMethods.rcl_init_options_init(ref init_options, allocator));
             Utils.CheckReturnEnum(NativeMethods.rcl_init(0, null, ref init_options, ref handle));

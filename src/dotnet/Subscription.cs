@@ -4,10 +4,12 @@ using ROS2.Interfaces;
 namespace rclcs
 {
 
-    public class Subscription<T>: System.IDisposable where T : IRclcsMessage
+    public class Subscription<T>: ISubscription<T> where T : IRclcsMessage
     {
-        rcl_subscription_t handle;
+        private rcl_subscription_t handle;
         rcl_node_t nodeHandle;
+
+        public rcl_subscription_t Handle { get { return handle; } }
 
         internal Action<T> callback;
 
