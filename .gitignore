@@ -1,6 +1,7 @@
 src/rclcs.xml
-/src/bin
-/src/obj
+src/dotnet/bin
+src/dotnet/obj
+src/dotnet/packages
 *.dll
 *.exe
 *.mdb

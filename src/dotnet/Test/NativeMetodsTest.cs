@@ -3,8 +3,8 @@ using System;
 using System.Reflection;
 using System.Text;
 using rclcs;
-
 using ROS2.Interfaces;
+using rclcs.Test;
 
 namespace rclcs.TestNativeMethods
 {
@@ -95,6 +95,7 @@ namespace rclcs.TestNativeMethods
             ret = (RCLReturnEnum)NativeMethods.rcl_context_fini(ref context);
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK));
         }
+
     }
 
     [TestFixture]
@@ -277,13 +278,14 @@ namespace rclcs.TestNativeMethods
     public class Subscription
     {
         rcl_context_t context;
+        rcl_allocator_t allocator;
         rcl_node_t node;
 
         [SetUp]
         public void SetUp()
         {
             rcl_init_options_t init_options = NativeMethods.rcl_get_zero_initialized_init_options();
-            rcl_allocator_t allocator = NativeMethods.rcl_get_default_allocator();
+            allocator = NativeMethods.rcl_get_default_allocator();
             NativeMethods.rcl_init_options_init(ref init_options, allocator);
             context = NativeMethods.rcl_get_zero_initialized_context();
 
@@ -292,7 +294,7 @@ namespace rclcs.TestNativeMethods
             node = NativeMethods.rcl_get_zero_initialized_node();
             rcl_node_options_t defaultNodeOptions = NativeMethods.rcl_node_get_default_options();
 
-            string name = "publisher_test";
+            string name = "subscription_test";
             string nodeNamespace = "/ns";
             NativeMethods.rcl_node_init(ref node, name, nodeNamespace, ref context, ref defaultNodeOptions);
         }
@@ -347,6 +349,66 @@ namespace rclcs.TestNativeMethods
 
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
             ret = (RCLReturnEnum)NativeMethods.rcl_subscription_fini(ref subscription, ref node);
+        }
+
+        [Test]
+        public void WaitSetAddSubscription()
+        {
+            NativeMethods.rcl_reset_error();
+            rcl_subscription_t subscription = NativeMethods.rcl_get_zero_initialized_subscription();
+            rcl_subscription_options_t subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
+            MethodInfo m = typeof(std_msgs.msg.Bool).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
+            IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+            TestUtils.AssertRetOk(NativeMethods.rcl_subscription_init(ref subscription, ref node, typeSupportHandle, "/subscriber_test_topic", ref subscriptionOptions));
+            rcl_wait_set_t waitSet = NativeMethods.rcl_get_zero_initialized_wait_set();
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_init(ref waitSet, 1, 0, 0, 0, 0, allocator));
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_clear(ref waitSet));
+
+            Assert.That(NativeMethods.rcl_subscription_is_valid(ref subscription), Is.True);
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_add_subscription(ref waitSet, ref subscription, UIntPtr.Zero));
+
+            RCLReturnEnum ret = (RCLReturnEnum)NativeMethods.rcl_wait(ref waitSet, Utils.TimeoutSecToNsec(0.01));
+
+            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_TIMEOUT));
+
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_fini(ref waitSet));
+            TestUtils.AssertRetOk(NativeMethods.rcl_subscription_fini(ref subscription, ref node));
+        }
+
+    }
+
+
+    [TestFixture]
+    public class WaitSet
+    {
+
+
+        [Test]
+        public void GetZeroInitializedWaitSet()
+        {
+            // NOTE: The struct rcl_wait_set_t contains size_t 
+            // fields that are set to UIntPtr in C# declaration,
+            // not guaranteed to work for all C implemenations/platforms.
+            rcl_wait_set_t waitSet = NativeMethods.rcl_get_zero_initialized_wait_set();
+        }
+
+        [Test]
+        public void WaitSetInit()
+        {
+            rcl_wait_set_t waitSet = NativeMethods.rcl_get_zero_initialized_wait_set();
+            rcl_allocator_t allocator = NativeMethods.rcl_get_default_allocator();
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_init(ref waitSet, 1, 0, 0, 0, 0, allocator));
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_fini(ref waitSet));
+        }
+
+        [Test]
+        public void WaitSetClear()
+        {
+            rcl_wait_set_t waitSet = NativeMethods.rcl_get_zero_initialized_wait_set();
+            rcl_allocator_t allocator = NativeMethods.rcl_get_default_allocator();
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_init(ref waitSet, 1, 0, 0, 0, 0, allocator));
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_clear(ref waitSet));
+            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_fini(ref waitSet));
         }
 
     }

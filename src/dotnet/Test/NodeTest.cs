@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+
 namespace rclcs.Test
 {
     [TestFixture]
@@ -55,9 +56,32 @@ namespace rclcs.Test
         }
 
         [Test]
-        public void CreateSubscriber()
+        public void CreateSubscription()
         {
-            
+            Subscription<std_msgs.msg.Bool> subscription = node.CreateSubscription<std_msgs.msg.Bool>(
+                "/subscription_topic", msg => Console.WriteLine("I heard: [" + msg.data + "]"));
+            subscription.Dispose();
+
+            using (subscription = node.CreateSubscription<std_msgs.msg.Bool>("test_topic", msg => Console.WriteLine("Got message")))
+            {
+            }
+        }
+        
+        [Test]
+        public void TestSubscriptionCallback()
+        {
+            bool messageReceived = false;
+
+            using (Subscription<std_msgs.msg.Bool> subscription = node.CreateSubscription<std_msgs.msg.Bool>("test_topic", msg => messageReceived = true))
+            {
+                using (Publisher<std_msgs.msg.Bool> publisher = node.CreatePublisher<std_msgs.msg.Bool>("test_topic"))
+                {
+                    publisher.Publish(new std_msgs.msg.Bool());
+
+                }
+            }
+
+            Assert.That(messageReceived, Is.True);
         }
 
     }

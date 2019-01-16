@@ -7,7 +7,7 @@ namespace rclcs
     /// <summary>
     /// Represents a managed ROS node
     /// </summary>
-    public class Node: System.IDisposable
+    public class Node: INode
     {
         internal rcl_node_t handle;
 
@@ -75,6 +75,12 @@ namespace rclcs
         {
             // TODO(samiam): Add to list and call dispose for all publishers before destroying node?
             return new Publisher<T>(topic, this);
+        }
+
+        public Subscription<T> CreateSubscription<T>(string topic, Action<T> callback) where T : IRclcsMessage
+        {
+            // TODO(samiam): Add to list and call dispose for all subscribers before destroying node?
+            return new Subscription<T>(topic, this, callback);
         }
 
     }

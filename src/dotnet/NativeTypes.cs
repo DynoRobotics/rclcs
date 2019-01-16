@@ -72,6 +72,21 @@ namespace rclcs
         private rcl_allocator_t allocator;
     }
 
+    public struct rcl_wait_set_t
+    {
+        private IntPtr subscriptions;
+        private UIntPtr size_of_subscriptions;
+        private IntPtr guard_conditions;
+        private UIntPtr size_of_guard_conditions;
+        private IntPtr timers;
+        private UIntPtr size_of_timers;
+        private IntPtr clients;
+        private UIntPtr size_of_clients;
+        private IntPtr services;
+        private UIntPtr size_of_services;
+        private IntPtr impl;
+    }
+
     // rmw
 
     public struct rmw_qos_profile_t

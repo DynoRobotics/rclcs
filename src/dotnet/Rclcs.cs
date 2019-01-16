@@ -20,5 +20,15 @@ namespace rclcs
         {
             return new Node(nodeName, context, nodeNamespace: nodeNamespace);
         }
+
+        public static void Spin(INode node)
+        {
+            SpinOnce(node, 0.1);
+        }
+
+        public static void SpinOnce(INode node, double timeoutSec)
+        {
+            
+        }
     }
 }

@@ -6,26 +6,29 @@ namespace rclcs
 
     public class Subscription<T>: System.IDisposable where T : IRclcsMessage
     {
-        rcl_publisher_t handle;
+        rcl_subscription_t handle;
         rcl_node_t nodeHandle;
+
+        internal Action<T> callback;
 
         private bool disposed;
 
-        public Subscription(string topic, Node node)
+        public Subscription(string topic, Node node, Action<T> callback)
         {
+            this.callback = callback;
             nodeHandle = node.handle;
-            handle = NativeMethods.rcl_get_zero_initialized_publisher();
-            rcl_publisher_options_t publisherOptions = NativeMethods.rcl_publisher_get_default_options();
+            handle = NativeMethods.rcl_get_zero_initialized_subscription();
+            rcl_subscription_options_t subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
 
             MethodInfo m = typeof(T).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
             IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
 
-            Utils.CheckReturnEnum(NativeMethods.rcl_publisher_init(
+            Utils.CheckReturnEnum(NativeMethods.rcl_subscription_init(
                                     ref handle, 
                                     ref nodeHandle, 
                                     typeSupportHandle, 
-                                    "publisher_test_topic", 
-                                    ref publisherOptions));
+                                    topic,
+                                    ref subscriptionOptions));
         }
 
         ~Subscription()
@@ -56,13 +59,13 @@ namespace rclcs
 
         private void DestroyPublisher()
         {
-            Utils.CheckReturnEnum(NativeMethods.rcl_publisher_fini(ref handle, ref nodeHandle));
+            Utils.CheckReturnEnum(NativeMethods.rcl_subscription_fini(ref handle, ref nodeHandle));
         }
 
 
-        public void Publish(T msg)
-        {
-            Utils.CheckReturnEnum(NativeMethods.rcl_publish(ref handle, msg.Handle));
-        }
+        //public void Publish(T msg)
+        //{
+        //    Utils.CheckReturnEnum(NativeMethods.rcl_(ref handle, msg.Handle));
+        //}
     }
 }

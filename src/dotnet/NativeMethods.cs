@@ -243,6 +243,82 @@ namespace rclcs
             "rcl_subscription_is_valid"),
             typeof(SubscriptionIsValidType));
 
+        // rcl_take
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int TakeType(ref rcl_subscription_t subscription, IntPtr message_handle, IntPtr message_info);
+        internal static TakeType
+            rcl_take =
+            (TakeType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_take"),
+            typeof(TakeType));
+
+        // rcl_get_zero_initialized_wait_set
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate rcl_wait_set_t GetZeroInitializedWaitSetType();
+        internal static GetZeroInitializedWaitSetType
+            rcl_get_zero_initialized_wait_set =
+            (GetZeroInitializedWaitSetType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_get_zero_initialized_wait_set"),
+            typeof(GetZeroInitializedWaitSetType));
+
+        // rcl_wait_set_init
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int WaitSetInitType(ref rcl_wait_set_t wait_set,
+                                              ulong number_of_subscriptions,
+                                              ulong number_of_guard_conditions,
+                                              ulong number_of_timers,
+                                              ulong number_of_clients,
+                                              ulong number_of_services,
+                                              rcl_allocator_t allocator);
+        internal static WaitSetInitType
+            rcl_wait_set_init =
+            (WaitSetInitType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_wait_set_init"),
+            typeof(WaitSetInitType));
+
+        // rcl_wait_set_fini
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int WatiSetFiniType(ref rcl_wait_set_t wait_set);
+        internal static WatiSetFiniType
+            rcl_wait_set_fini =
+            (WatiSetFiniType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_wait_set_fini"),
+            typeof(WatiSetFiniType));
+
+        // rcl_wait_set_clear
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int WaitSetClearType(ref rcl_wait_set_t wait_set);
+        internal static WaitSetClearType
+            rcl_wait_set_clear =
+            (WaitSetClearType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_wait_set_clear"),
+            typeof(WaitSetClearType));
+
+        // rcl_wait_set_add_subscription
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int WaitSetAddSubscriptionType(ref rcl_wait_set_t wait_set, ref rcl_subscription_t subscription, UIntPtr index);
+        internal static WaitSetAddSubscriptionType
+            rcl_wait_set_add_subscription =
+            (WaitSetAddSubscriptionType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_wait_set_add_subscription"),
+            typeof(WaitSetAddSubscriptionType));
+
+        // rcl_wait
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int WaitType(ref rcl_wait_set_t wait_set, ulong timeout);
+        internal static WaitType
+            rcl_wait =
+            (WaitType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_wait"),
+            typeof(WaitType));
+
         // --- RCUtils
         private static readonly IntPtr nativeRCUtils = dllLoadUtils.LoadLibraryNoSuffix("rcutils");
 

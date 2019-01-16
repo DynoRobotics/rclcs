@@ -38,5 +38,14 @@ namespace rclcs
             NativeMethods.rcl_reset_error();
             return errorString;
         }
+
+        public static ulong TimeoutSecToNsec(double timeoutSec)
+        {
+            if(timeoutSec < 0)
+            {
+                throw new RuntimeError("Negative timeouts are not allowed, timeout was " + timeoutSec + " seconds.");
+            }
+            return (ulong)(timeoutSec * Constants.S_TO_NS);
+        }
     }
 }

@@ -20,3 +20,12 @@
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/obj/x64/Debug/rclcs.csproj.CopyComplete
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/obj/x64/Debug/rclcs.dll
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/obj/x64/Debug/rclcs.pdb
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/Castle.Core.dll
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/Moq.dll
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/System.Threading.Tasks.Extensions.dll
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/Castle.Core.xml
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/System.Threading.Tasks.Extensions.xml
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/Moq.pdb
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/Moq.xml

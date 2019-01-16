@@ -43,6 +43,19 @@
     <Reference Include="rcldotnet_common">
       <HintPath>..\..\..\..\..\install\rcldotnet_common\lib\rcldotnet_common\dotnet\rcldotnet_common.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.1\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>packages\Moq.4.10.1\lib\net45\Moq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -63,11 +76,18 @@
     <Compile Include="Test\NodeTest.cs" />
     <Compile Include="Publisher.cs" />
     <Compile Include="Subscription.cs" />
+    <Compile Include="INode.cs" />
+    <Compile Include="Executors.cs" />
+    <Compile Include="IExecutor.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Test\WaitTest.cs" />
+    <Compile Include="Test\TestUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NativeMethodsLinux.cs.old" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

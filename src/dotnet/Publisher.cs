@@ -24,7 +24,7 @@ namespace rclcs
                                     ref handle, 
                                     ref nodeHandle, 
                                     typeSupportHandle, 
-                                    "publisher_test_topic", 
+                                    topic,
                                     ref publisherOptions));
 
         }
