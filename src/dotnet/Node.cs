@@ -96,7 +96,7 @@ namespace rclcs
             return publisher;
         }
 
-        public Subscription<T> CreateSubscription<T>(string topic, Action<T> callback) where T : IRclcsMessage
+        public Subscription<T> CreateSubscription<T>(string topic, Action<T> callback) where T : IRclcsMessage, new ()
         {
             Subscription<T> subscription = new Subscription<T>(topic, this, callback);
             subscriptions.Add(subscription);

@@ -4,7 +4,8 @@ using ROS2.Interfaces;
 namespace rclcs
 {
 
-    public class Subscription<T>: ISubscription<T> where T : IRclcsMessage
+    public class Subscription<T>: ISubscription<T> 
+        where T : IRclcsMessage, new ()
     {
         private rcl_subscription_t handle;
         rcl_node_t nodeHandle;
@@ -14,6 +15,16 @@ namespace rclcs
         internal Action<T> callback;
 
         private bool disposed;
+
+        public IRclcsMessage CreateMessage()
+        {
+            return (IRclcsMessage)new T(); ;
+        }
+
+        public void TriggerCallback(IRclcsMessage message)
+        {
+            callback((T)message);
+        }
 
         public Subscription(string topic, Node node, Action<T> callback)
         {

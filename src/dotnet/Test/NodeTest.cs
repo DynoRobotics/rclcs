@@ -66,23 +66,6 @@ namespace rclcs.Test
             {
             }
         }
-        
-        [Test]
-        public void TestSubscriptionCallback()
-        {
-            bool messageReceived = false;
-
-            using (Subscription<std_msgs.msg.Bool> subscription = node.CreateSubscription<std_msgs.msg.Bool>("test_topic", msg => messageReceived = true))
-            {
-                using (Publisher<std_msgs.msg.Bool> publisher = node.CreatePublisher<std_msgs.msg.Bool>("test_topic"))
-                {
-                    publisher.Publish(new std_msgs.msg.Bool());
-
-                }
-            }
-
-            Assert.That(messageReceived, Is.True);
-        }
 
     }
 }

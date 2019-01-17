@@ -1,39 +1,42 @@
 ﻿<Properties StartupConfiguration="{CC0D4875-60FA-4318-854B-1924FED1C85B}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Publisher.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/SubscriptionTest.cs">
     <Files>
       <File FileName="NativeMethods.cs" Line="314" Column="82" />
-      <File FileName="Rclcs.cs" Line="31" Column="13" />
+      <File FileName="Rclcs.cs" Line="48" Column="10" />
       <File FileName="Utils.cs" Line="46" Column="107" />
       <File FileName="Enums.cs" Line="1" Column="1" />
       <File FileName="Context.cs" Line="15" Column="43" />
       <File FileName="Test/CreateNodeTest.cs" Line="27" Column="39" />
-      <File FileName="INode.cs" Line="8" Column="2" />
+      <File FileName="INode.cs" Line="2" Column="34" />
       <File FileName="Executors.cs" Line="12" Column="5" />
       <File FileName="Constants.cs" Line="6" Column="17" />
       <File FileName="Exceptions.cs" Line="1" Column="1" />
-      <File FileName="WaitSet.cs" Line="13" Column="72" />
-      <File FileName="ISubscriptionBase.cs" Line="5" Column="6" />
+      <File FileName="WaitSet.cs" Line="58" Column="13" />
+      <File FileName="ISubscriptionBase.cs" Line="6" Column="6" />
       <File FileName="ISubscription.cs" Line="9" Column="1" />
-      <File FileName="Publisher.cs" Line="7" Column="33" />
-      <File FileName="Test/InitShutdownTest.cs" Line="25" Column="11" NotebookId="1" />
-      <File FileName="Test/NativeMetodsTest.cs" Line="374" Column="79" NotebookId="1" />
+      <File FileName="Publisher.cs" Line="12" Column="31" />
+      <File FileName="Test/InitShutdownTest.cs" Line="23" Column="9" NotebookId="1" />
+      <File FileName="Test/NativeMetodsTest.cs" Line="33" Column="37" NotebookId="1" />
       <File FileName="NativeTypes.cs" Line="75" Column="33" NotebookId="1" />
       <File FileName="Test/MessagesTest.cs" Line="22" Column="30" NotebookId="1" />
       <File FileName="Test/NodeTest.cs" Line="76" Column="14" NotebookId="1" />
-      <File FileName="Node.cs" Line="16" Column="56" NotebookId="1" />
+      <File FileName="Node.cs" Line="16" Column="40" NotebookId="1" />
       <File FileName="IExecutor.cs" Line="5" Column="6" NotebookId="1" />
-      <File FileName="Test/WaitSetTest.cs" Line="11" Column="44" NotebookId="1" />
+      <File FileName="Test/WaitSetTest.cs" Line="40" Column="10" NotebookId="1" />
       <File FileName="Test/TestUtils.cs" Line="7" Column="22" NotebookId="1" />
-      <File FileName="IPublisherBase.cs" Line="4" Column="49" NotebookId="1" />
+      <File FileName="IPublisherBase.cs" Line="6" Column="6" NotebookId="1" />
       <File FileName="IPublisher.cs" Line="7" Column="31" NotebookId="1" />
-      <File FileName="Subscription.cs" Line="11" Column="9" NotebookId="1" />
+      <File FileName="Subscription.cs" Line="26" Column="13" NotebookId="1" />
+      <File FileName="Test/SubscriptionTest.cs" Line="8" Column="14" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="rclcs" expanded="True">
             <Node name="rclcs" expanded="True">
-              <Node name="Publisher.cs" selected="True" />
+              <Node name="Test" expanded="True">
+                <Node name="SubscriptionTest.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -47,9 +50,7 @@
                   <Node name="NodeTest" expanded="True" />
                   <Node name="WaitTest" expanded="True" selected="True" />
                 </Node>
-                <Node name="TestNativeMethods" expanded="True">
-                  <Node name="WaitSet" expanded="True" />
-                </Node>
+                <Node name="TestNativeMethods" expanded="True" />
               </Node>
             </Node>
           </Node>

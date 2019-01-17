@@ -5,7 +5,18 @@ namespace rclcs.Test
     [TestFixture]
     public class WaitTest
     {
-    
+        Context context;
+        Node node;
+
+        [SetUp]
+        public void SetUp()
+        {
+            context = new Context();
+            Rclcs.Init(context);
+            node = new Node("test_node", context);
+            Subscription<std_msgs.msg.Int64> subscription = node.CreateSubscription<std_msgs.msg.Int64>("/test_topic", (msg) => { });
+        }
+
         [Test]
         public void TimeoutSecToNsec()
         {
@@ -24,10 +35,6 @@ namespace rclcs.Test
         [Test]
         public void WaitForReadySubscriptionCallback()
         {
-            Context context = new Context();
-            Rclcs.Init(context);
-            Node node = new Node("test_node", context);
-            Subscription<std_msgs.msg.Int64> subscription = node.CreateSubscription<std_msgs.msg.Int64>("/test_topic", (msg) => { });
             WaitSet waitSet = new WaitSet(node.Subscriptions);
             waitSet.Wait(0.1);
         }

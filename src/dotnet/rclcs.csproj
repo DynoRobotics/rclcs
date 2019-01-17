@@ -87,6 +87,7 @@
     <Compile Include="ISubscription.cs" />
     <Compile Include="IPublisherBase.cs" />
     <Compile Include="IPublisher.cs" />
+    <Compile Include="Test\SubscriptionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
@@ -94,5 +95,13 @@
   <ItemGroup>
     <None Include="NativeMethodsLinux.cs.old" />
     <None Include="packages.config" />
+    <None Include="Scripts\codemirror-3.01\mode\xml.js" />
+    <None Include="Scripts\codemirror-3.01\mode\javascript.js" />
+    <None Include="Scripts\codemirror-3.01\mode\htmlmixed.js" />
+    <None Include="Scripts\codemirror-3.01\mode\css.js" />
+    <None Include="Scripts\codemirror-3.01\codemirror.js" />
+    <None Include="Content\codemirror-3.01\codemirror.css" />
+    <None Include="Scripts\codemirror-3.01\keymap\vim.js" />
+    <None Include="Scripts\codemirror-3.01\keymap\emacs.js" />
   </ItemGroup>
 </Project>

@@ -43,7 +43,6 @@ namespace rclcs
 
             foreach (ISubscriptionBase subscription in subscriptions)
             {
-                Console.WriteLine("adding subsription");
                 rcl_subscription_t subscription_handle = subscription.Handle;
                 Utils.CheckReturnEnum(NativeMethods.rcl_wait_set_add_subscription(ref handle, ref subscription_handle, UIntPtr.Zero));
             }

@@ -250,7 +250,6 @@ namespace rclcs.TestNativeMethods
             MethodInfo m = typeof(std_msgs.msg.Bool).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
             IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
             ret = (RCLReturnEnum)NativeMethods.rcl_publisher_init(ref publisher, ref node, typeSupportHandle, "publisher_test_topic", ref publisherOptions);
-            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
 
             ret = (RCLReturnEnum)NativeMethods.rcl_publisher_fini(ref publisher, ref node);
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
@@ -265,7 +264,6 @@ namespace rclcs.TestNativeMethods
             std_msgs.msg.Bool msg = new std_msgs.msg.Bool();
             IntPtr typeSupportHandle = msg.TypeSupportHandle;
             ret = (RCLReturnEnum)NativeMethods.rcl_publisher_init(ref publisher, ref node, typeSupportHandle, "/publisher_test_topic", ref publisherOptions);
-            Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
             ret = (RCLReturnEnum)NativeMethods.rcl_publish(ref publisher, msg.Handle);
             Assert.That(ret, Is.EqualTo(RCLReturnEnum.RCL_RET_OK), Utils.PopRclErrorString());
             ret = (RCLReturnEnum)NativeMethods.rcl_publisher_fini(ref publisher, ref node);
@@ -380,8 +378,6 @@ namespace rclcs.TestNativeMethods
     [TestFixture]
     public class WaitSet
     {
-
-
         [Test]
         public void GetZeroInitializedWaitSet()
         {
@@ -405,7 +401,7 @@ namespace rclcs.TestNativeMethods
         {
             rcl_wait_set_t waitSet = NativeMethods.rcl_get_zero_initialized_wait_set();
             rcl_allocator_t allocator = NativeMethods.rcl_get_default_allocator();
-            TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_init(ref waitSet, 1, 0, 0, 0, 0, allocator));
+            NativeMethods.rcl_wait_set_init(ref waitSet, 1, 0, 0, 0, 0, allocator);
             TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_clear(ref waitSet));
             TestUtils.AssertRetOk(NativeMethods.rcl_wait_set_fini(ref waitSet));
         }
