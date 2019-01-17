@@ -2,6 +2,7 @@ src/rclcs.xml
 src/dotnet/bin
 src/dotnet/obj
 src/dotnet/packages
+src/dotnet/Scripts
 *.dll
 *.exe
 *.mdb

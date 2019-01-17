@@ -29,3 +29,5 @@
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/System.Threading.Tasks.Extensions.xml
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/Moq.pdb
 /home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/Moq.xml
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/test_msgs_assembly.dll
+/home/sam/ros2_dotnet_ws/src/dotnet/rclcs/src/dotnet/bin/Debug/test_msgs_assembly.pdb

@@ -57,6 +57,7 @@ set(CS_SOURCES
   src/dotnet/Exceptions.cs
 )
 
+# TODO: automate assembly_dep list based on package dependencies?
 foreach(_assembly_dep ${rcldotnet_common_ASSEMBLIES_DLL})
 list(APPEND _assembly_deps_dll "${_assembly_dep}")
 endforeach()
