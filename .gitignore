@@ -3,7 +3,7 @@ src/dotnet/bin
 src/dotnet/obj
 src/dotnet/packages
 src/dotnet/Scripts
-.vi
+.vs
 *.dll
 *.exe
 *.mdb
