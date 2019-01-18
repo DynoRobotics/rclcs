@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{CC0D4875-60FA-4318-854B-1924FED1C85B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>rclcs</RootNamespace>
+    <AssemblyName>rclcs</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <AssemblyOriginatorKeyFile>rclcs.snk</AssemblyOriginatorKeyFile>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <Package>nunit</Package>
+    </Reference>
+    <Reference Include="std_msgs_assembly">
+      <HintPath>..\..\..\..\..\install\std_msgs\lib\dotnet\std_msgs_assembly.dll</HintPath>
+    </Reference>
+    <Reference Include="rcldotnet_common">
+      <HintPath>..\..\..\..\..\install\rcldotnet_common\lib\rcldotnet_common\dotnet\rcldotnet_common.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="Moq">
+      <HintPath>packages\Moq.4.10.1\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.2\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="test_msgs_assembly">
+      <HintPath>..\..\..\..\..\install\test_msgs\lib\dotnet\test_msgs_assembly.dll</HintPath>
+    </Reference>
+    <Reference Include="geometry_msgs_assembly">
+      <HintPath>..\..\..\..\..\install\geometry_msgs\lib\dotnet\geometry_msgs_assembly.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Test\InitShutdownTest.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Rclcs.cs" />
+    <Compile Include="NativeTypes.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Test\NativeMetodsTest.cs" />
+    <Compile Include="MarshallingHelpers.cs" />
+    <Compile Include="Test\CreateNodeTest.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="Test\MessagesTest.cs" />
+    <Compile Include="Test\NodeTest.cs" />
+    <Compile Include="Publisher.cs" />
+    <Compile Include="Subscription.cs" />
+    <Compile Include="INode.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Test\WaitSetTest.cs" />
+    <Compile Include="Test\TestUtils.cs" />
+    <Compile Include="WaitSet.cs" />
+    <Compile Include="ISubscriptionBase.cs" />
+    <Compile Include="ISubscription.cs" />
+    <Compile Include="IPublisherBase.cs" />
+    <Compile Include="IPublisher.cs" />
+    <Compile Include="Test\SubscriptionTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
