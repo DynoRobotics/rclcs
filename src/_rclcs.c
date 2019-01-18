@@ -35,5 +35,6 @@
 #include <rmw/validate_namespace.h>
 #include <rmw/validate_node_name.h>
 #include <rosidl_generator_c/message_type_support_struct.h>
-
 #include <signal.h>
+
+// NOTE(samiam): For custom C code to rclcs, not used, remove? 

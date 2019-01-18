@@ -83,8 +83,6 @@
     <Compile Include="Publisher.cs" />
     <Compile Include="Subscription.cs" />
     <Compile Include="INode.cs" />
-    <Compile Include="Executors.cs" />
-    <Compile Include="IExecutor.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Test\WaitSetTest.cs" />
     <Compile Include="Test\TestUtils.cs" />

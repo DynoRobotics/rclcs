@@ -5,7 +5,7 @@ namespace rclcs
 {
     public static class Rclcs
     {
-        // NOTE: Init context when created instaid?
+        // NOTE(samiam): Init context when created instaid?
 
         public static void Init(Context context)
         {
@@ -30,7 +30,7 @@ namespace rclcs
 
         public static void SpinOnce(INode node, double timeoutSec)
         {
-            // NOTE: Only single thread, add support for other executors?
+            // NOTE(samiam): Only single thread, add support for other executors?
             WaitSet waitSet = new WaitSet(node.Subscriptions);
             waitSet.Wait(timeoutSec);
 

@@ -63,22 +63,17 @@ namespace rclcs
                     // Dispose managed resources.
                 }
 
-                DestroyPublisher();
+                DestroySubscription();
 
                 disposed = true;
             }
         }
 
 
-        private void DestroyPublisher()
+        private void DestroySubscription()
         {
             Utils.CheckReturnEnum(NativeMethods.rcl_subscription_fini(ref handle, ref nodeHandle));
         }
 
-
-        //public void Publish(T msg)
-        //{
-        //    Utils.CheckReturnEnum(NativeMethods.rcl_(ref handle, msg.Handle));
-        //}
     }
 }
