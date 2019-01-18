@@ -51,14 +51,14 @@ namespace rclcs.Test
             Rclcs.Shutdown(context);
         }
 
-        //[Test]
-        //public void DoubleShutdown()
-        //{
-        //    Context context = new Context();
-        //    Rclcs.Init(context);
-        //    Rclcs.Shutdown(context);
-        //    Assert.That(() => { Rclcs.Shutdown(context); }, Throws.TypeOf<RuntimeError>());
-        //}
+        [Test]
+        public void DoubleShutdown()
+        {
+            Context context = new Context();
+            Rclcs.Init(context);
+            Rclcs.Shutdown(context);
+            Assert.That(() => { Rclcs.Shutdown(context); }, Throws.TypeOf<RuntimeError>());
+        }
 
         [Test]
         public void CreateNodeWithoutInit()
