@@ -1,11 +1,13 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Linq;
+using System.Collections.Generic;
+
 namespace rclcs.Test
 {
     [TestFixture()]
     public class MessagesTest
     {
-    
         [Test]
         public void CreateMessage()
         {
@@ -57,8 +59,114 @@ namespace rclcs.Test
         public void SetDynamicArrayPrimitives()
         {
             test_msgs.msg.DynamicArrayPrimitives msg = new test_msgs.msg.DynamicArrayPrimitives();
+            List<bool> setBoolList = new List<bool>();
+            setBoolList.Add(true);
+            setBoolList.Add(false);
+            msg.bool_values = setBoolList;
+            List<bool> getBoolList = msg.bool_values;
+            Assert.That(getBoolList.Count, Is.EqualTo(2));
+            Assert.That(getBoolList[0], Is.True);
+            Assert.That(getBoolList[1], Is.False);
+
+            List<int> setIntList = new List<int>();
+            setIntList.Add(123);
+            setIntList.Add(456);
+            test_msgs.msg.DynamicArrayPrimitives msg2 = new test_msgs.msg.DynamicArrayPrimitives();
+            msg2.int32_values = setIntList;
+            List<int> getIntList = msg2.int32_values;
+            Assert.That(getIntList.Count, Is.EqualTo(2));
+            Assert.That(getIntList[0], Is.EqualTo(123));
+
+            List<string> setStringList = new List<string>();
+            setStringList.Add("Hello");
+            setStringList.Add("world");
+            test_msgs.msg.DynamicArrayPrimitives msg3 = new test_msgs.msg.DynamicArrayPrimitives();
+            msg3.string_values = setStringList;
+            List<string> getStringList = msg3.string_values;
+            Assert.That(getStringList.Count, Is.EqualTo(2));
+            Assert.That(getStringList[0], Is.EqualTo("Hello"));
+            Assert.That(getStringList[1], Is.EqualTo("world"));
         }
 
+        [Test]
+        public void SetBoundedArrayPrimitives()
+        {
+            test_msgs.msg.BoundedArrayPrimitives msg = new test_msgs.msg.BoundedArrayPrimitives();
+            List<bool> setBoolList = new List<bool>();
+            setBoolList.Add(true);
+            setBoolList.Add(false);
+            msg.bool_values = setBoolList;
+            List<bool> getBoolList = msg.bool_values;
+            Assert.That(getBoolList.Count, Is.EqualTo(2));
+            Assert.That(getBoolList[0], Is.True);
+            Assert.That(getBoolList[1], Is.False);
 
+            List<int> setIntList = new List<int>();
+            setIntList.Add(123);
+            setIntList.Add(456);
+            test_msgs.msg.BoundedArrayPrimitives msg2 = new test_msgs.msg.BoundedArrayPrimitives();
+            msg2.int32_values = setIntList;
+            List<int> getIntList = msg2.int32_values;
+            Assert.That(getIntList.Count, Is.EqualTo(2));
+            Assert.That(getIntList[0], Is.EqualTo(123));
+
+            List<string> setStringList = new List<string>();
+            setStringList.Add("Hello");
+            setStringList.Add("world");
+            test_msgs.msg.BoundedArrayPrimitives msg3 = new test_msgs.msg.BoundedArrayPrimitives();
+            msg3.string_values = setStringList;
+            List<string> getStringList = msg3.string_values;
+            Assert.That(getStringList.Count, Is.EqualTo(2));
+            Assert.That(getStringList[0], Is.EqualTo("Hello"));
+            Assert.That(getStringList[1], Is.EqualTo("world"));
+        }
+
+        [Test]
+        public void SetNested()
+        {
+            test_msgs.msg.Nested msg = new test_msgs.msg.Nested();
+            test_msgs.msg.Primitives prim_msg = msg.primitive_values;
+            Assert.That(prim_msg.int32_value, Is.EqualTo(0));
+            prim_msg.int32_value = 25;
+            prim_msg.string_value = "wubalubadubdub";
+            Assert.That(prim_msg.int32_value, Is.EqualTo(25));
+            test_msgs.msg.Primitives prim_msg2 = msg.primitive_values;
+            Assert.That(prim_msg2.int32_value, Is.EqualTo(25));
+            Assert.That(prim_msg2.string_value, Is.EqualTo("wubalubadubdub"));
+        }
+
+        // NOTE(samiam): memory issues, does not work yet...
+        //[Test]
+        //public void SetStaticArrayPrimitives()
+        //{
+        //    test_msgs.msg.StaticArrayPrimitives msg = new test_msgs.msg.StaticArrayPrimitives();
+        //    List<bool> setBoolList = new List<bool>();
+        //    setBoolList.Add(true);
+        //    setBoolList.Add(false);
+        //    msg.bool_values = setBoolList;
+        //    List<bool> getBoolList = msg.bool_values;
+        //    Assert.That(getBoolList.Count, Is.EqualTo(3));
+        //    Assert.That(getBoolList[0], Is.True);
+        //    Assert.That(getBoolList[1], Is.False);
+
+        //    List<int> setIntList = new List<int>();
+        //    setIntList.Add(123);
+        //    setIntList.Add(456);
+        //    test_msgs.msg.StaticArrayPrimitives msg2 = new test_msgs.msg.StaticArrayPrimitives();
+        //    msg2.int32_values = setIntList;
+        //    List<int> getIntList = msg2.int32_values;
+        //    Assert.That(getIntList.Count, Is.EqualTo(3));
+        //    Assert.That(getIntList[0], Is.EqualTo(123));
+
+        //    List<string> setStringList = new List<string>();
+        //    setStringList.Add("Hello");
+        //    setStringList.Add("world");
+        //    test_msgs.msg.StaticArrayPrimitives msg3 = new test_msgs.msg.StaticArrayPrimitives();
+        //    msg3.string_values = setStringList;
+        //    List<string> getStringList = msg3.string_values;
+        //    Assert.That(getStringList.Count, Is.EqualTo(3));
+        //    Assert.That(getStringList[0], Is.EqualTo("Hello"));
+        //    Assert.That(getStringList[1], Is.EqualTo("world"));
+        //}
     }
 }
