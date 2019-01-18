@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{CC0D4875-60FA-4318-854B-1924FED1C85B}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Utils.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/MessagesTest.cs">
     <Files>
       <File FileName="NativeMethods.cs" Line="345" Column="32" />
       <File FileName="Rclcs.cs" Line="55" Column="52" />
@@ -18,7 +18,7 @@
       <File FileName="Test/InitShutdownTest.cs" Line="23" Column="9" NotebookId="1" />
       <File FileName="Test/NativeMetodsTest.cs" Line="56" Column="1" NotebookId="1" />
       <File FileName="NativeTypes.cs" Line="28" Column="26" NotebookId="1" />
-      <File FileName="Test/MessagesTest.cs" Line="12" Column="7" NotebookId="1" />
+      <File FileName="Test/MessagesTest.cs" Line="135" Column="79" NotebookId="1" />
       <File FileName="Test/NodeTest.cs" Line="43" Column="1" NotebookId="1" />
       <File FileName="Node.cs" Line="2" Column="25" NotebookId="1" />
       <File FileName="IExecutor.cs" Line="5" Column="6" NotebookId="1" />
@@ -30,6 +30,20 @@
       <File FileName="Test/SubscriptionTest.cs" Line="41" Column="1" NotebookId="1" />
       <File FileName="MarshallingHelpers.cs" Line="49" Column="21" NotebookId="1" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="rclcs" expanded="True" selected="True">
+            <Node name="rclcs" expanded="True">
+              <Node name="rclcs" expanded="True">
+                <Node name="Test" expanded="True" />
+                <Node name="TestNativeMethods" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.rclcs PreferredExecutionTarget="MonoDevelop.Default" />

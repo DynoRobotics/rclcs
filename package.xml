@@ -4,7 +4,7 @@
   <name>rclcs</name>
   <version>0.0.0</version>
   <description>C# Binding for rcl</description>
-  <maintainer email="lennart.nachtigall@student.kit.edu">Lennart Nachtigall</maintainer>
+  <maintainer email="samuel@dynoroboitcs.se">Samuel Lindgren</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
