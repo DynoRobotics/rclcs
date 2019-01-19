@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.InteropServices;
+
 namespace rclcs
 {
     #pragma warning disable 0169

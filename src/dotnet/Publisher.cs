@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using ROS2.Interfaces;
+
 namespace rclcs
 {
 
-    public class Publisher<T>: IPublisher<T> where T : IRclcsMessage
+    public class Publisher<T>: IPublisher<T> where T : IRclcsMessage, new ()
     {
         rcl_publisher_t handle;
         rcl_node_t nodeHandle;
@@ -17,8 +18,14 @@ namespace rclcs
             handle = NativeMethods.rcl_get_zero_initialized_publisher();
             rcl_publisher_options_t publisherOptions = NativeMethods.rcl_publisher_get_default_options();
 
-            MethodInfo m = typeof(T).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
-            IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+            //TODO(samiam): Figure out why System.Reflection is not available 
+            //when building with colcon/xtool on ubuntu 18.04 and mono 4.5
+
+            //MethodInfo m = typeof(T).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
+            //IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+
+            IRclcsMessage msg = new T();
+            IntPtr typeSupportHandle = msg.TypeSupportHandle;
 
             Utils.CheckReturnEnum(NativeMethods.rcl_publisher_init(
                                     ref handle, 

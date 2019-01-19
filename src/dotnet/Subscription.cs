@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using ROS2.Interfaces;
+
 namespace rclcs
 {
 
@@ -33,8 +34,15 @@ namespace rclcs
             handle = NativeMethods.rcl_get_zero_initialized_subscription();
             rcl_subscription_options_t subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
 
-            MethodInfo m = typeof(T).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
-            IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+            //TODO(samiam): Figure out why System.Reflection is not available 
+            //when building with colcon/xtool on ubuntu 18.04 and mono 4.5
+
+            //MethodInfo m = typeof(T).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
+            //IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+
+            IRclcsMessage msg = new T();
+            IntPtr typeSupportHandle = msg.TypeSupportHandle;
+            msg.Dispose();
 
             Utils.CheckReturnEnum(NativeMethods.rcl_subscription_init(
                                     ref handle, 

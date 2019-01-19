@@ -89,7 +89,7 @@ namespace rclcs
         }
        
 
-        public Publisher<T> CreatePublisher<T>(string topic) where T : IRclcsMessage
+        public Publisher<T> CreatePublisher<T>(string topic) where T : IRclcsMessage, new()
         {
             Publisher<T> publisher = new Publisher<T>(topic, this);
             publishers.Add(publisher);

@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using ROS2.Utils;
 using ROS2.Interfaces;
 
-
 namespace rclcs
 {
     internal static class NativeMethods
