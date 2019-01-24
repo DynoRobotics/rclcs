@@ -27,9 +27,9 @@ namespace rclcs
             if (context.Ok)
             {
                 handle = NativeMethods.rcl_get_zero_initialized_node();
-                rcl_node_options_t defaultNodeOptions = NativeMethods.rcl_node_get_default_options();
+                IntPtr defaultNodeOptions = NativeMethods.rcl_node_get_default_options();
 
-                Utils.CheckReturnEnum(NativeMethods.rcl_node_init(ref handle, nodeName, nodeNamespace, ref context.handle, ref defaultNodeOptions));
+                Utils.CheckReturnEnum(NativeMethods.rcl_node_init(ref handle, nodeName, nodeNamespace, ref context.handle, defaultNodeOptions));
 
             }
             else

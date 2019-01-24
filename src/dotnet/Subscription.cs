@@ -32,7 +32,7 @@ namespace rclcs
             this.callback = callback;
             nodeHandle = node.handle;
             handle = NativeMethods.rcl_get_zero_initialized_subscription();
-            rcl_subscription_options_t subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
+            //IntPtr subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
 
             //TODO(samiam): Figure out why System.Reflection is not available 
             //when building with colcon/xtool on ubuntu 18.04 and mono 4.5
@@ -44,12 +44,12 @@ namespace rclcs
             IntPtr typeSupportHandle = msg.TypeSupportHandle;
             msg.Dispose();
 
-            Utils.CheckReturnEnum(NativeMethods.rcl_subscription_init(
-                                    ref handle, 
-                                    ref nodeHandle, 
-                                    typeSupportHandle, 
-                                    topic,
-                                    ref subscriptionOptions));
+            //Utils.CheckReturnEnum(NativeMethods.rcl_subscription_init(
+            //                        ref handle, 
+            //                        ref nodeHandle, 
+            //                        typeSupportHandle, 
+            //                        topic,
+            //                        subscriptionOptions));
         }
 
         ~Subscription()

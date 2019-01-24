@@ -23,14 +23,7 @@ namespace rclcs
 
         public static unsafe string GetRclErrorString()
         {
-            rcl_error_string_t rclErrorString = NativeMethods.rcl_get_error_string();
-            int maxMessageLength = 1024;
-            char[] charArray = new char[maxMessageLength];
-            for (int i = 0; i < maxMessageLength; i++)
-            {
-                charArray[i] = rclErrorString.str[i];
-            }
-            return new string(charArray).Trim('\0');
+            return MarshallingHelpers.PtrToString(NativeMethods.rclcs_get_error_string());
         }
 
         public static string PopRclErrorString()

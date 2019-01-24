@@ -29,7 +29,7 @@ namespace rclcs
 
     public unsafe struct rcl_error_string_t
     {
-        internal fixed char str[1024];
+        internal IntPtr str;
     }
 
     public struct rcl_init_options_t

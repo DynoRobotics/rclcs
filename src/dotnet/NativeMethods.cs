@@ -15,18 +15,18 @@ namespace rclcs
         // rcl_get_zero_initialized_context
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate rcl_context_t GetZeroInitializedContextType();
-        internal static GetZeroInitializedContextType 
-            rcl_get_zero_initialized_context = 
-            (GetZeroInitializedContextType) Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
-            nativeRCL, 
-            "rcl_get_zero_initialized_context"), 
+        internal static GetZeroInitializedContextType
+            rcl_get_zero_initialized_context =
+            (GetZeroInitializedContextType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_get_zero_initialized_context"),
             typeof(GetZeroInitializedContextType));
 
         // rcl_get_zero_initialized_init_options
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate rcl_init_options_t GetZeroInitializedInitOptionsType();
         internal static GetZeroInitializedInitOptionsType
-            rcl_get_zero_initialized_init_options = 
+            rcl_get_zero_initialized_init_options =
             (GetZeroInitializedInitOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
             nativeRCL,
             "rcl_get_zero_initialized_init_options"),
@@ -94,7 +94,7 @@ namespace rclcs
 
         // rcl_node_get_default_options
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate rcl_node_options_t NodeGetDefaultOptionsType();
+        internal delegate IntPtr NodeGetDefaultOptionsType();
         internal static NodeGetDefaultOptionsType
             rcl_node_get_default_options =
             (NodeGetDefaultOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
@@ -102,9 +102,9 @@ namespace rclcs
             "rcl_node_get_default_options"),
             typeof(NodeGetDefaultOptionsType));
 
-        // rcl_node_init
+        //// rcl_node_init
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate int NodeInitType(ref rcl_node_t node, string name, string node_namespace, ref rcl_context_t context, ref rcl_node_options_t default_options);
+        internal delegate int NodeInitType(ref rcl_node_t node, string name, string node_namespace, ref rcl_context_t context, IntPtr default_options);
         internal static NodeInitType
             rcl_node_init =
             (NodeInitType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
@@ -202,19 +202,10 @@ namespace rclcs
             "rcl_get_zero_initialized_subscription"),
             typeof(GetZeroInitializedSubcriptionType));
 
-        // rcl_subscription_get_default_options
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate rcl_subscription_options_t SubscriptionGetDefaultOptionsType();
-        internal static SubscriptionGetDefaultOptionsType
-            rcl_subscription_get_default_options =
-            (SubscriptionGetDefaultOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
-            nativeRCL,
-            "rcl_subscription_get_default_options"),
-            typeof(SubscriptionGetDefaultOptionsType));
 
         // rcl_subscription_init
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate int SubscriptionInitType(ref rcl_subscription_t subscription, ref rcl_node_t node, IntPtr type_support_ptr, string topic_name, ref rcl_subscription_options_t subscription_options);
+        internal delegate int SubscriptionInitType(ref rcl_subscription_t subscription, ref rcl_node_t node, IntPtr type_support_ptr, string topic_name, IntPtr subscription_options);
         internal static SubscriptionInitType
             rcl_subscription_init =
             (SubscriptionInitType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
@@ -318,17 +309,17 @@ namespace rclcs
             "rcl_wait"),
             typeof(WaitType));
 
-        // --- RCUtils
+        // --- RCUtils ---
         private static readonly IntPtr nativeRCUtils = dllLoadUtils.LoadLibraryNoSuffix("rcutils");
 
         // rcl_get_default_allocator
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate rcl_allocator_t RclGetDefaultAllocatorType();
-        internal static RclGetDefaultAllocatorType 
-            rcl_get_default_allocator = 
+        internal static RclGetDefaultAllocatorType
+            rcl_get_default_allocator =
             (RclGetDefaultAllocatorType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
-            nativeRCUtils, 
-            "rcutils_get_default_allocator"), 
+            nativeRCUtils,
+            "rcutils_get_default_allocator"),
             typeof(RclGetDefaultAllocatorType));
 
         // rcl_reset_error
@@ -341,15 +332,60 @@ namespace rclcs
             "rcutils_reset_error"),
             typeof(ResetErrorType));
 
+
+        // --- Custom rclcs lib ---
+
+        private static readonly IntPtr nativeRclcs = dllLoadUtils.LoadLibrary("rclcs");
+
         // rcl_get_error_string
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate rcl_error_string_t GetErrorStringType();
+        internal delegate IntPtr GetErrorStringType();
         internal static GetErrorStringType
-            rcl_get_error_string =
+            rclcs_get_error_string =
             (GetErrorStringType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
-            nativeRCUtils,
-            "rcutils_get_error_string"),
+            nativeRclcs,
+            "rclcs_get_error_string"),
             typeof(GetErrorStringType));
 
+        // rclcs_node_create_default_options
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate IntPtr NodeCreateDefaltOptionsType();
+        internal static NodeCreateDefaltOptionsType
+            rclcs_node_create_default_options =
+            (NodeCreateDefaltOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRclcs,
+            "rclcs_node_create_default_options"),
+            typeof(NodeCreateDefaltOptionsType));
+
+        // rclcs_node_dispose_options
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void NodeDisposeOptionsType(IntPtr options);
+        internal static NodeDisposeOptionsType
+            rclcs_node_dispose_options =
+            (NodeDisposeOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRclcs,
+            "rclcs_node_dispose_options"),
+            typeof(NodeDisposeOptionsType));
+
+        // rclcs_subscription_create_default_options
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate IntPtr SubscriptionCreateDefaultOptionsType();
+        internal static SubscriptionCreateDefaultOptionsType
+            rclcs_subscription_create_default_options =
+            (SubscriptionCreateDefaultOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRclcs,
+            "rclcs_subscription_create_default_options"),
+            typeof(SubscriptionCreateDefaultOptionsType));
+
+        // rclcs_subscription_dispose_options
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SubscriptionDisposeOptionsType(IntPtr options);
+        internal static SubscriptionDisposeOptionsType
+            rclcs_subscription_dispose_options =
+            (SubscriptionDisposeOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRclcs,
+            "rclcs_subscription_dispose_options"),
+            typeof(SubscriptionDisposeOptionsType));
     }
 }
