@@ -92,15 +92,6 @@ namespace rclcs
             "rcl_get_zero_initialized_node"),
             typeof(GetZeroInitializedNodeType));
 
-        // rcl_node_get_default_options
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate IntPtr NodeGetDefaultOptionsType();
-        internal static NodeGetDefaultOptionsType
-            rcl_node_get_default_options =
-            (NodeGetDefaultOptionsType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
-            nativeRCL,
-            "rcl_node_get_default_options"),
-            typeof(NodeGetDefaultOptionsType));
 
         //// rcl_node_init
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

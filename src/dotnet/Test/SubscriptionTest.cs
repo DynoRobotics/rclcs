@@ -18,6 +18,14 @@ namespace rclcs.Test
             publisher = node.CreatePublisher<std_msgs.msg.Int32>("subscription_test_topic");
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            publisher.Dispose();
+            node.Dispose();
+            Rclcs.Shutdown(context);
+        }
+
         [Test]
         public void SubscriptionTriggerCallback()
         {

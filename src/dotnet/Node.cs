@@ -11,6 +11,8 @@ namespace rclcs
     {
         internal rcl_node_t handle;
 
+        private IntPtr defaultNodeOptions;
+
         private bool disposed;
 
         private IList<ISubscriptionBase> subscriptions;
@@ -27,7 +29,7 @@ namespace rclcs
             if (context.Ok)
             {
                 handle = NativeMethods.rcl_get_zero_initialized_node();
-                IntPtr defaultNodeOptions = NativeMethods.rcl_node_get_default_options();
+                defaultNodeOptions = NativeMethods.rclcs_node_create_default_options();
 
                 Utils.CheckReturnEnum(NativeMethods.rcl_node_init(ref handle, nodeName, nodeNamespace, ref context.handle, defaultNodeOptions));
 
@@ -86,6 +88,7 @@ namespace rclcs
         public void DestroyNode()
         {
             Utils.CheckReturnEnum(NativeMethods.rcl_node_fini(ref handle));
+            NativeMethods.rclcs_node_dispose_options(defaultNodeOptions);
         }
        
 
