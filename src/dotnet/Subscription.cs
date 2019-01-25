@@ -11,6 +11,7 @@ namespace rclcs
         private rcl_subscription_t handle;
         rcl_node_t nodeHandle;
 
+        private IntPtr subscriptionOptions;
         public rcl_subscription_t Handle { get { return handle; } }
 
         internal Action<T> callback;
@@ -32,11 +33,10 @@ namespace rclcs
             this.callback = callback;
             nodeHandle = node.handle;
             handle = NativeMethods.rcl_get_zero_initialized_subscription();
-            rcl_subscription_options_t subscriptionOptions = NativeMethods.rcl_subscription_get_default_options();
+            subscriptionOptions = NativeMethods.rclcs_subscription_create_default_options();
 
             //TODO(samiam): Figure out why System.Reflection is not available 
             //when building with colcon/xtool on ubuntu 18.04 and mono 4.5
-
             //MethodInfo m = typeof(T).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
             //IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
 
@@ -45,11 +45,11 @@ namespace rclcs
             msg.Dispose();
 
             Utils.CheckReturnEnum(NativeMethods.rcl_subscription_init(
-                                    ref handle, 
-                                    ref nodeHandle, 
-                                    typeSupportHandle, 
+                                    ref handle,
+                                    ref nodeHandle,
+                                    typeSupportHandle,
                                     topic,
-                                    ref subscriptionOptions));
+                                    subscriptionOptions));
         }
 
         ~Subscription()
@@ -81,6 +81,7 @@ namespace rclcs
         private void DestroySubscription()
         {
             Utils.CheckReturnEnum(NativeMethods.rcl_subscription_fini(ref handle, ref nodeHandle));
+            NativeMethods.rclcs_node_dispose_options(subscriptionOptions);
         }
 
     }

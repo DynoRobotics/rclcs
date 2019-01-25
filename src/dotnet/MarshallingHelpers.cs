@@ -16,7 +16,7 @@ namespace rclcs
 			// "Do The Right Thing"?
 			if (p == IntPtr.Zero)
 				return null;
-			return Marshal.PtrToStringAnsi (p);
+			return Marshal.PtrToStringAnsi(p);
 		}
 
 

@@ -24,7 +24,7 @@ namespace rclcs.Test
         public void CreateNode()
         {
             string nodeName = "create_node_test";
-            Rclcs.CreateNode(nodeName, context).DestroyNode();
+            Rclcs.CreateNode(nodeName, context).Dispose();
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace rclcs.Test
             string nodeNamespace = "/ns";
             Node node = Rclcs.CreateNode(nodeName, context, nodeNamespace: nodeNamespace);
             Assert.That(node.Namespace, Is.EqualTo("/ns"));
-            node.DestroyNode();
+            node.Dispose();
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace rclcs.Test
             string nodeNamespace = "";
             Node node = Rclcs.CreateNode(nodeName, context, nodeNamespace: nodeNamespace);
             Assert.That(node.Namespace, Is.EqualTo("/"));
-            node.DestroyNode();
+            node.Dispose();
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace rclcs.Test
             string nodeNamespace = "ns";
             Node node = Rclcs.CreateNode(nodeName, context, nodeNamespace: nodeNamespace);
             Assert.That(node.Namespace, Is.EqualTo("/ns"));
-            node.DestroyNode();
+            node.Dispose();
         }
 
         [Test]

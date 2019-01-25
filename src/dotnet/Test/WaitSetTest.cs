@@ -17,6 +17,13 @@ namespace rclcs.Test
             Subscription<std_msgs.msg.Int64> subscription = node.CreateSubscription<std_msgs.msg.Int64>("/test_topic", (msg) => { });
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            node.Dispose();
+            Rclcs.Shutdown(context);
+        }
+
         [Test]
         public void TimeoutSecToNsec()
         {

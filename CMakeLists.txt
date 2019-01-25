@@ -36,7 +36,7 @@ endif()
 
 function(configure_csharp_c_extension_library _library_name)
   install(TARGETS ${_library_name}
-    DESTINATION lib
+    DESTINATION bin
   )
 endfunction()
 
@@ -89,6 +89,7 @@ SOURCES
   INCLUDE_DLLS
   ${_assembly_deps_dll}
 )
+
 
 install_dotnet(${PROJECT_NAME} DESTINATION lib/dotnet)
 ament_export_assemblies_dll("lib/dotnet/${PROJECT_NAME}.dll")
