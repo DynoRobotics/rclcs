@@ -135,6 +135,27 @@ namespace rclcs.Test
             Assert.That(prim_msg2.string_value, Is.EqualTo("wubalubadubdub"));
         }
 
+        [Test]
+        public void SetDynamicArrayNested()
+        {
+            test_msgs.msg.DynamicArrayNested msg = new test_msgs.msg.DynamicArrayNested();
+
+            msg.primitive_values_init(3);
+            Assert.That(msg.primitive_values.Count, Is.EqualTo(3));
+
+            var listOfNestedMsgs = msg.primitive_values;
+
+            listOfNestedMsgs[0].string_value = "hello";
+            Assert.That(listOfNestedMsgs[0].string_value, Is.EqualTo("hello"));
+
+            listOfNestedMsgs[1].string_value = "world";
+            Assert.That(listOfNestedMsgs[1].string_value, Is.EqualTo("world"));
+
+            var readListOfNestedMsgs = msg.primitive_values;
+            Assert.That(readListOfNestedMsgs[0].string_value, Is.EqualTo("hello"));
+            Assert.That(readListOfNestedMsgs[1].string_value, Is.EqualTo("world"));
+        }
+
         // NOTE(samiam): memory issues, does not work yet...
         //[Test]
         //public void SetStaticArrayPrimitives()

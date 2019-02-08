@@ -93,7 +93,7 @@ namespace rclcs
             typeof(GetZeroInitializedNodeType));
 
 
-        //// rcl_node_init
+        // rcl_node_init
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate int NodeInitType(ref rcl_node_t node, string name, string node_namespace, ref rcl_context_t context, IntPtr default_options);
         internal static NodeInitType
