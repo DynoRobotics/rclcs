@@ -35,6 +35,7 @@ limitations under the License.
 #include <rmw/validate_full_topic_name.h>
 #include <rmw/validate_namespace.h>
 #include <rmw/validate_node_name.h>
+#include <rmw/qos_profiles.h>
 #include <rosidl_generator_c/message_type_support_struct.h>
 #include <signal.h>
 
@@ -74,7 +75,27 @@ char * rclcs_get_error_string()
 }
 
 ROSIDL_GENERATOR_C_EXPORT
-void rclcs_subscription_set_qos_profile(rcl_subscription_options_t * subscription_options, rmw_qos_profile_t * qos_profile)
+void rclcs_subscription_set_qos_profile(rcl_subscription_options_t * subscription_options, int profile)
 {
-  subscription_options->qos = *qos_profile;
+  switch(profile)
+  {
+    case 0:
+      subscription_options->qos = rmw_qos_profile_sensor_data;
+      break;
+    case 1:
+      subscription_options->qos = rmw_qos_profile_parameters;
+      break;
+    case 2:
+      subscription_options->qos = rmw_qos_profile_default;
+      break;
+    case 3:
+      subscription_options->qos = rmw_qos_profile_services_default;
+      break;
+    case 4:
+      subscription_options->qos = rmw_qos_profile_parameter_events;
+      break;
+    case 5:
+      subscription_options->qos = rmw_qos_profile_system_default;
+      break;
+  }
 }

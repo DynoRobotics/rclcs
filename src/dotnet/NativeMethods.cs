@@ -395,9 +395,9 @@ namespace rclcs
             "rclcs_subscription_dispose_options"),
             typeof(SubscriptionDisposeOptionsType));
 
-        // rclcs_subscription_dispose_options
+        // rclcs_subscription_set_qos_profile
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void SubscriptionSetQosProfile(IntPtr subscription_options, ref rmw_qos_profile_t qos_profile);
+        internal delegate void SubscriptionSetQosProfile(IntPtr subscription_options, int profile);
         internal static SubscriptionSetQosProfile
             rclcs_subscription_set_qos_profile =
             (SubscriptionSetQosProfile)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(

@@ -115,9 +115,14 @@ namespace rclcs
             return publisher;
         }
 
-        public Subscription<T> CreateSubscription<T>(string topic, Action<T> callback) where T : IRclcsMessage, new ()
+        public Subscription<T> CreateSubscription<T>(string topic, Action<T> callback, QualityOfServiceProfile qos = null) where T : IRclcsMessage, new ()
         {
-            Subscription<T> subscription = new Subscription<T>(topic, this, callback);
+            if(qos == null)
+            {
+                qos = new QualityOfServiceProfile(QosProfiles.DEFAULT);
+            }
+
+            Subscription<T> subscription = new Subscription<T>(topic, this, callback, qos);
             subscriptions.Add(subscription);
             return subscription;
         }

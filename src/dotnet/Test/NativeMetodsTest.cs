@@ -508,8 +508,7 @@ namespace rclcs.TestNativeMethods
             rcl_subscription_t subscription = NativeMethods.rcl_get_zero_initialized_subscription();
             IntPtr subscriptionOptions = NativeMethods.rclcs_subscription_create_default_options();
 
-            rmw_qos_profile_t qosProfile = new rmw_qos_profile_t();
-            NativeMethods.rclcs_subscription_set_qos_profile(subscriptionOptions, ref qosProfile);
+            NativeMethods.rclcs_subscription_set_qos_profile(subscriptionOptions, 0);
 
             MethodInfo m = typeof(std_msgs.msg.Bool).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
             IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
@@ -520,5 +519,7 @@ namespace rclcs.TestNativeMethods
             NativeMethods.rcl_subscription_fini(ref subscription, ref node);
             NativeMethods.rclcs_subscription_dispose_options(subscriptionOptions);
         }
+
+
     }
 }

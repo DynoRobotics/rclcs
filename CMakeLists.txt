@@ -68,6 +68,7 @@ set(CS_SOURCES
   src/dotnet/NativeTypes.cs
   src/dotnet/Node.cs
   src/dotnet/Publisher.cs
+  src/dotnet/QualityOfServiceProfile.cs
   src/dotnet/Rclcs.cs
   src/dotnet/Subscription.cs
   src/dotnet/Utils.cs

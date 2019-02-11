@@ -29,6 +29,8 @@ namespace rclcs
         private IntPtr subscriptionOptions;
         public rcl_subscription_t Handle { get { return handle; } }
 
+        QualityOfServiceProfile qualityOfServiceProfile;
+
         internal Action<T> callback;
 
         private bool disposed;
@@ -43,14 +45,26 @@ namespace rclcs
             callback((T)message);
         }
 
-        public Subscription(string topic, Node node, Action<T> callback)
+        public Subscription(string topic, Node node, Action<T> callback, QualityOfServiceProfile qualityOfServiceProfile = null)
         {
             this.callback = callback;
             nodeHandle = node.handle;
             handle = NativeMethods.rcl_get_zero_initialized_subscription();
             subscriptionOptions = NativeMethods.rclcs_subscription_create_default_options();
 
-            //TODO(samiam): Figure out why System.Reflection is not available 
+            if (qualityOfServiceProfile == null)
+            {
+                this.qualityOfServiceProfile = new QualityOfServiceProfile(QosProfiles.DEFAULT);
+            }
+            else
+            {
+                this.qualityOfServiceProfile = qualityOfServiceProfile;
+            }
+
+            //FIXME(sam): was not able to use a c# struct as qos profile, figure out why and replace the following hack...
+            NativeMethods.rclcs_subscription_set_qos_profile(subscriptionOptions, (int)qualityOfServiceProfile.Profile);
+
+            //TODO(sam): Figure out why System.Reflection is not available 
             //when building with colcon/xtool on ubuntu 18.04 and mono 4.5
             //MethodInfo m = typeof(T).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
             //IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });

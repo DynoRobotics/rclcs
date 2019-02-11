@@ -49,5 +49,54 @@ namespace rclcs.Test
 
             Assert.That(messageData, Is.EqualTo(42));
         }
+
+        [Test]
+        public void SubscriptionQosDefaultDepth()
+        {
+            int count = 0;
+            node.CreateSubscription<std_msgs.msg.Int32>("subscription_test_topic", 
+                                                        (msg) => { count += 1; });
+        
+            std_msgs.msg.Int32 published_msg = new std_msgs.msg.Int32();
+            published_msg.data = 42;
+
+            for (int i = 0; i < 10; i++)
+            {
+                publisher.Publish(published_msg);
+            }
+
+            for (int i = 0; i < 11; i++)
+            {
+                Rclcs.SpinOnce(node, 0.1);
+            }
+
+            Assert.That(count, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void SubscriptionQosSensorDataDepth()
+        {
+            int count = 0;
+            QualityOfServiceProfile qosProfile = new QualityOfServiceProfile(QosProfiles.SENSOR_DATA);
+
+            node.CreateSubscription<std_msgs.msg.Int32>("subscription_test_topic", 
+                                                        (msg) => { count += 1; },
+                                                        qosProfile);
+        
+            std_msgs.msg.Int32 published_msg = new std_msgs.msg.Int32();
+            published_msg.data = 42;
+
+            for (int i = 0; i < 6; i++)
+            {
+                publisher.Publish(published_msg);
+            }
+
+            for (int i = 0; i < 11; i++)
+            {
+                Rclcs.SpinOnce(node, 0.1);
+            }
+
+            Assert.That(count, Is.EqualTo(5));
+        }
     }
 }
