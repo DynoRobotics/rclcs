@@ -1,3 +1,19 @@
+/*
+© Dyno Robotics, 2019
+Author: Samuel Lindgren (samuel@dynorobotics.se)
+Licensed under the Apache License, Version 2.0 (the "License");
+
+You may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+<http://www.apache.org/licenses/LICENSE-2.0>.
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -67,12 +83,12 @@ namespace rclcs
         private IntPtr impl;
     }
 
-    public struct rcl_subscription_options_t
-    {
-        private rmw_qos_profile_t qos;
-        private bool ignore_local_publications;
-        private rcl_allocator_t allocator;
-    }
+    //public struct rcl_subscription_options_t
+    //{
+    //    public rmw_qos_profile_t qos;
+    //    private bool ignore_local_publications;
+    //    private rcl_allocator_t allocator;
+    //}
 
     public struct rcl_wait_set_t
     {
@@ -93,11 +109,11 @@ namespace rclcs
 
     public struct rmw_qos_profile_t
     {
-        private rmw_qos_history_policy_t history;
-        private UIntPtr depth;
-        private rmw_qos_reliability_policy_t reliability;
-        private rmw_qos_durability_policy_t durability;
-        private byte avoid_ros_namespace_conventions;
+        public rmw_qos_history_policy_t history;
+        public ulong depth;
+        public rmw_qos_reliability_policy_t reliability;
+        public rmw_qos_durability_policy_t durability;
+        public byte avoid_ros_namespace_conventions;
     }
 
 
@@ -122,6 +138,6 @@ namespace rclcs
         RMW_QOS_POLICY_DURABILITY_VOLATILE
     }
 
-    #pragma warning restore 0169
+#pragma warning restore 0169
 }
 

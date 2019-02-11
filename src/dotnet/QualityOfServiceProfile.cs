@@ -14,10 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace rclcs
 {
-    public static class Constants
+    class QualityOfServiceProfile
     {
-         public const double S_TO_NS = 1000 * 1000 * 1000;
     }
 }

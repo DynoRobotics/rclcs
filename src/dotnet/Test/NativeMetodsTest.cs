@@ -468,4 +468,57 @@ namespace rclcs.TestNativeMethods
         }
 
     }
+
+    [TestFixture]
+    public class QualityOfService
+    {
+        rcl_context_t context;
+        rcl_node_t node;
+        IntPtr defaultNodeOptions;
+
+        [SetUp]
+        public void SetUp()
+        {
+            rcl_init_options_t init_options = NativeMethods.rcl_get_zero_initialized_init_options();
+            rcl_allocator_t allocator = NativeMethods.rcl_get_default_allocator();
+            NativeMethods.rcl_init_options_init(ref init_options, allocator);
+            context = NativeMethods.rcl_get_zero_initialized_context();
+            NativeMethods.rcl_init(0, null, ref init_options, ref context);
+
+            node = NativeMethods.rcl_get_zero_initialized_node();
+            defaultNodeOptions = NativeMethods.rclcs_node_create_default_options();
+
+            string nodeName = "node_test";
+            string nodeNamespace = "/ns";
+            RCLReturnEnum ret = (RCLReturnEnum)NativeMethods.rcl_node_init(ref node, nodeName, nodeNamespace, ref context, defaultNodeOptions);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            NativeMethods.rcl_node_fini(ref node);
+            NativeMethods.rclcs_node_dispose_options(defaultNodeOptions);
+            NativeMethods.rcl_shutdown(ref context);
+            NativeMethods.rcl_context_fini(ref context);
+        }
+
+        [Test]
+        public void SetSubscriptionQosProfile()
+        {
+            rcl_subscription_t subscription = NativeMethods.rcl_get_zero_initialized_subscription();
+            IntPtr subscriptionOptions = NativeMethods.rclcs_subscription_create_default_options();
+
+            rmw_qos_profile_t qosProfile = new rmw_qos_profile_t();
+            NativeMethods.rclcs_subscription_set_qos_profile(subscriptionOptions, ref qosProfile);
+
+            MethodInfo m = typeof(std_msgs.msg.Bool).GetTypeInfo().GetDeclaredMethod("_GET_TYPE_SUPPORT");
+            IntPtr typeSupportHandle = (IntPtr)m.Invoke(null, new object[] { });
+            NativeMethods.rcl_subscription_init(ref subscription, ref node, typeSupportHandle, "/subscriber_test_topic", subscriptionOptions);
+
+            Assert.That(NativeMethods.rcl_subscription_is_valid(ref subscription), Is.True);
+
+            NativeMethods.rcl_subscription_fini(ref subscription, ref node);
+            NativeMethods.rclcs_subscription_dispose_options(subscriptionOptions);
+        }
+    }
 }

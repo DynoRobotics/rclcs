@@ -39,6 +39,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="Exceptions.cs" />
+    <Compile Include="QualityOfServiceProfile.cs" />
     <Compile Include="Test\InitShutdownTest.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Rclcs.cs" />
