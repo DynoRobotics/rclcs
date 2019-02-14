@@ -56,6 +56,7 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--no-undefined")
 set(CS_SOURCES
   src/dotnet/Constants.cs
   src/dotnet/Context.cs
+  src/dotnet/Clock.cs
   src/dotnet/Enums.cs
   src/dotnet/Exceptions.cs
   src/dotnet/INode.cs

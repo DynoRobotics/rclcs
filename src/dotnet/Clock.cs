@@ -1,22 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+© Dyno Robotics, 2019
+Author: Samuel Lindgren (samuel@dynorobotics.se)
+Licensed under the Apache License, Version 2.0 (the "License");
+
+You may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+<http://www.apache.org/licenses/LICENSE-2.0>.
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+using System;
 
 namespace rclcs
 {
-    class Clock : IDisposable
+    public class Clock : IDisposable
     {
         private bool disposed;
 
         internal IntPtr handle;
 
-        public builtin_interfaces.msg.Time Now
+        public struct RosTime
+        {
+            public int sec;
+            public uint nanosec;
+        }
+
+        public RosTime Now
         {
             get
             {
-                builtin_interfaces.msg.Time time = new builtin_interfaces.msg.Time();
+                RosTime time = new RosTime();
                 long queryNowNanoseconds = 0;
                 NativeMethods.rcl_clock_get_now(handle, ref queryNowNanoseconds);
                 time.sec = (int)(queryNowNanoseconds / (long)1e9);

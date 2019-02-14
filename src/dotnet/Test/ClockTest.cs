@@ -30,7 +30,7 @@ namespace rclcs.Test
         public void ClockGetNow()
         {
             Clock clock = new Clock();
-            builtin_interfaces.msg.Time timeNow = clock.Now;
+            Clock.RosTime timeNow = clock.Now;
             //Assert.That(timeNow.sec, Is.EqualTo(10));
         }
 
