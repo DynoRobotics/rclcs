@@ -83,6 +83,7 @@ namespace rclcs
         private IntPtr impl;
     }
 
+    //NOTE(sam): does not seem to work on Windows 10 for some reason... 
     //public struct rcl_subscription_options_t
     //{
     //    public rmw_qos_profile_t qos;
@@ -103,6 +104,16 @@ namespace rclcs
         private IntPtr services;
         private UIntPtr size_of_services;
         private IntPtr impl;
+    }
+
+    public struct rcl_clock_t
+    {
+        private int type;
+        private IntPtr jump_callbacks;
+        private UIntPtr num_jump_callbacks;
+        private IntPtr get_now;
+        private IntPtr data;
+        rcl_allocator_t allocator;
     }
 
     // rmw

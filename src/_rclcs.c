@@ -99,3 +99,17 @@ void rclcs_subscription_set_qos_profile(rcl_subscription_options_t * subscriptio
       break;
   }
 }
+
+ROSIDL_GENERATOR_C_EXPORT
+rcl_clock_t * rclcs_ros_clock_create(rcl_allocator_t * allocator_handle)
+{
+  rcl_clock_t  * clock_handle = (rcl_clock_t *)malloc(sizeof(rcl_clock_t));
+  rcl_ros_clock_init(clock_handle, allocator_handle);
+  return clock_handle;
+}
+
+ROSIDL_GENERATOR_C_EXPORT
+void rclcs_ros_clock_dispose(rcl_clock_t * clock_handle)
+{
+  free(clock_handle);
+}

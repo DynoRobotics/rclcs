@@ -38,12 +38,14 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Clock.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="QualityOfServiceProfile.cs" />
     <Compile Include="Test\InitShutdownTest.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Rclcs.cs" />
     <Compile Include="NativeTypes.cs" />
+    <Compile Include="Test\ClockTest.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Test\NativeMetodsTest.cs" />
@@ -67,6 +69,10 @@
     <Compile Include="Test\SubscriptionTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="builtin_interfaces_assembly, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\install\lib\dotnet\builtin_interfaces_assembly.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>packages\NUnit.Engine.3.9.0\lib\Mono.Cecil.dll</HintPath>
     </Reference>
@@ -89,6 +95,9 @@
     </Reference>
     <Reference Include="rcldotnet_common">
       <HintPath>..\..\..\..\..\install\lib\dotnet\rcldotnet_common.dll</HintPath>
+    </Reference>
+    <Reference Include="rosgraph_msgs_assembly">
+      <HintPath>..\..\..\..\..\install\lib\dotnet\rosgraph_msgs_assembly.dll</HintPath>
     </Reference>
     <Reference Include="std_msgs_assembly">
       <HintPath>..\..\..\..\..\install\lib\dotnet\std_msgs_assembly.dll</HintPath>

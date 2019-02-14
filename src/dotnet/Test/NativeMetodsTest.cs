@@ -522,4 +522,60 @@ namespace rclcs.TestNativeMethods
 
 
     }
+
+    [TestFixture]
+    public class Clock
+    {
+        rcl_context_t context;
+        rcl_allocator_t allocator;
+        rcl_node_t node;
+        IntPtr defaultNodeOptions;
+
+        [SetUp]
+        public void SetUp()
+        {
+            rcl_init_options_t init_options = NativeMethods.rcl_get_zero_initialized_init_options();
+            allocator = NativeMethods.rcl_get_default_allocator();
+            NativeMethods.rcl_init_options_init(ref init_options, allocator);
+            context = NativeMethods.rcl_get_zero_initialized_context();
+            NativeMethods.rcl_init(0, null, ref init_options, ref context);
+
+            node = NativeMethods.rcl_get_zero_initialized_node();
+            defaultNodeOptions = NativeMethods.rclcs_node_create_default_options();
+
+            string nodeName = "node_test";
+            string nodeNamespace = "/ns";
+            RCLReturnEnum ret = (RCLReturnEnum)NativeMethods.rcl_node_init(ref node, nodeName, nodeNamespace, ref context, defaultNodeOptions);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            NativeMethods.rcl_node_fini(ref node);
+            NativeMethods.rclcs_node_dispose_options(defaultNodeOptions);
+            NativeMethods.rcl_shutdown(ref context);
+            NativeMethods.rcl_context_fini(ref context);
+        }
+
+        [Test]
+        public void CreateClock()
+        {
+            IntPtr clockHandle = NativeMethods.rclcs_ros_clock_create(ref allocator);
+            NativeMethods.rclcs_ros_clock_dispose(clockHandle);
+        }
+
+        [Test]
+        public void ClockGetNow()
+        {
+            IntPtr clockHandle = NativeMethods.rclcs_ros_clock_create(ref allocator);
+            long queryNow = 0;
+            NativeMethods.rcl_clock_get_now(clockHandle, ref queryNow);
+
+            Assert.That(queryNow, Is.Not.EqualTo(0));
+
+            NativeMethods.rclcs_ros_clock_dispose(clockHandle);
+        }
+
+
+    }
 }

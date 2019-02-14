@@ -316,6 +316,17 @@ namespace rclcs
             "rcl_wait"),
             typeof(WaitType));
 
+        // rcl_clock_get_now
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int RclClockGetNow(IntPtr ros_clock, ref long query_now);
+        internal static RclClockGetNow
+            rcl_clock_get_now =
+            (RclClockGetNow)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRCL,
+            "rcl_clock_get_now"),
+            typeof(RclClockGetNow));
+
+
         // --- RCUtils ---
         private static readonly IntPtr nativeRCUtils = dllLoadUtils.LoadLibraryNoSuffix("rcutils");
 
@@ -404,5 +415,25 @@ namespace rclcs
             nativeRclcs,
             "rclcs_subscription_set_qos_profile"),
             typeof(SubscriptionSetQosProfile));
+
+        // rclcs_ros_clock_create
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate IntPtr RclcsClockCreate(ref rcl_allocator_t allocator_handle);
+        internal static RclcsClockCreate
+            rclcs_ros_clock_create =
+            (RclcsClockCreate)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRclcs,
+            "rclcs_ros_clock_create"),
+            typeof(RclcsClockCreate));
+
+        // rclcs_ros_clock_dispose
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void RclcsClockDispose(IntPtr clock_handle);
+        internal static RclcsClockDispose
+            rclcs_ros_clock_dispose =
+            (RclcsClockDispose)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRclcs,
+            "rclcs_ros_clock_dispose"),
+            typeof(RclcsClockDispose));
     }
 }
