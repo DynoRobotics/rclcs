@@ -38,7 +38,7 @@ namespace rclcs
                 long queryNowNanoseconds = 0;
                 NativeMethods.rcl_clock_get_now(handle, ref queryNowNanoseconds);
                 time.sec = (int)(queryNowNanoseconds / (long)1e9);
-                time.nanosec = (uint)(queryNowNanoseconds - queryNowNanoseconds/((long)10e9));
+                time.nanosec = (uint)(queryNowNanoseconds - time.sec*((long)1e9));
                 return time;
             }
         }
