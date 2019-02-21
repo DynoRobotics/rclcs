@@ -66,7 +66,6 @@ namespace rclcs
         {
             if ((sec == other.sec) && (nanosec == other.nanosec))
             {
-                System.Console.Write("Returning zero");
                 return 0;
             }
             else if (sec > other.sec)
