@@ -28,7 +28,7 @@ namespace rclcs
         internal rcl_context_t handle;
         private rcl_allocator_t allocator;
 
-        private bool isInit;
+        public bool isInit;
         private bool disposed;
 
         public Context()

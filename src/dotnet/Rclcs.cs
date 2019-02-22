@@ -47,8 +47,11 @@ namespace rclcs
         public static void SpinOnce(INode node, double timeoutSec)
         {
             // NOTE(sam): Only single thread, add support for other executors?
-            WaitSet waitSet = new WaitSet(node.Subscriptions);
-            waitSet.Wait(timeoutSec);
+            if (timeoutSec > 0.0001d)
+            {
+                WaitSet waitSet = new WaitSet(node.Subscriptions);
+                waitSet.Wait(timeoutSec);
+            }
 
             foreach(ISubscriptionBase subscription in node.Subscriptions)
             {
