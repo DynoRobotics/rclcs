@@ -36,7 +36,9 @@ endif()
 
 function(configure_csharp_c_extension_library _library_name)
   install(TARGETS ${_library_name}
-    DESTINATION bin
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
   )
 endfunction()
 

@@ -17,7 +17,6 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -70,10 +69,6 @@
     <Compile Include="Test\SubscriptionTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="builtin_interfaces_assembly, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\install\lib\dotnet\builtin_interfaces_assembly.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>packages\NUnit.Engine.3.9.0\lib\Mono.Cecil.dll</HintPath>
     </Reference>
@@ -106,6 +101,9 @@
     <Reference Include="System" />
     <Reference Include="test_msgs_assembly">
       <HintPath>..\..\..\..\..\install\lib\dotnet\test_msgs_assembly.dll</HintPath>
+    </Reference>
+    <Reference Include="builtin_interfaces_assembly">
+      <HintPath>..\..\..\..\..\install\lib\dotnet\builtin_interfaces_assembly.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
