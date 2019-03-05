@@ -366,6 +366,17 @@ namespace rclcs
             "rclcs_get_error_string"),
             typeof(GetErrorStringType));
 
+        // rcl_dispose_error_string
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DisposeErrorStringType(IntPtr error_c_string);
+        internal static DisposeErrorStringType
+            rclcs_dispose_error_string =
+            (DisposeErrorStringType)Marshal.GetDelegateForFunctionPointer(dllLoadUtils.GetProcAddress(
+            nativeRclcs,
+            "rclcs_dispose_error_string"),
+            typeof(DisposeErrorStringType));
+
         // rclcs_node_create_default_options
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate IntPtr NodeCreateDefaltOptionsType();

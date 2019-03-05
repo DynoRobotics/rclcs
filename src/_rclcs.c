@@ -71,7 +71,14 @@ ROSIDL_GENERATOR_C_EXPORT
 char * rclcs_get_error_string()
 {
   rcl_error_string_t error_string = rcl_get_error_string();
-  return error_string.str;
+  char * error_c_string = strdup(error_string.str);
+  return error_c_string;
+}
+
+ROSIDL_GENERATOR_C_EXPORT
+void rclcs_dispose_error_string(char * error_c_string)
+{
+  free(error_c_string);
 }
 
 ROSIDL_GENERATOR_C_EXPORT

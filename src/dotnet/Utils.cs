@@ -37,9 +37,12 @@ namespace rclcs
             }
         }
 
-        public static unsafe string GetRclErrorString()
+        public static string GetRclErrorString()
         {
-            return MarshallingHelpers.PtrToString(NativeMethods.rclcs_get_error_string());
+            IntPtr errorStringPtr = NativeMethods.rclcs_get_error_string();
+            string errorString = MarshallingHelpers.PtrToString(errorStringPtr);
+            NativeMethods.rclcs_dispose_error_string(errorStringPtr);
+            return errorString;
         }
 
         public static string PopRclErrorString()
